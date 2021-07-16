@@ -7,14 +7,14 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.button.MaterialButton
 import org.simple.clinic.R
 
+enum class ButtonState {
+  InProgress, Enabled, Disabled
+}
+
 class ProgressMaterialButton_Old(
     context: Context,
     attrs: AttributeSet? = null
 ) : MaterialButton(context, attrs) {
-
-  enum class ButtonState {
-    InProgress, Enabled, Disabled
-  }
 
   private var buttonState: ButtonState
   private var buttonText: String? = null

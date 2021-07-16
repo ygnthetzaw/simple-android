@@ -72,8 +72,8 @@ import org.simple.clinic.platform.crash.CrashReporter
 import org.simple.clinic.registration.phone.PhoneNumberValidator
 import org.simple.clinic.util.exhaustive
 import org.simple.clinic.util.unsafeLazy
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.Enabled
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.InProgress
+import org.simple.clinic.widgets.ButtonState.Enabled
+import org.simple.clinic.widgets.ButtonState.InProgress
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility.AGE_VISIBLE
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility.BOTH_VISIBLE

@@ -18,8 +18,8 @@ import org.simple.clinic.navigation.v2.fragments.BaseBottomSheet
 import org.simple.clinic.patient.PatientUuid
 import org.simple.clinic.patient.businessid.Identifier
 import org.simple.clinic.summary.linkId.LinkIdWithPatientSheet.LinkIdWithPatientSheetKey
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.Enabled
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.InProgress
+import org.simple.clinic.widgets.ButtonState.Enabled
+import org.simple.clinic.widgets.ButtonState.InProgress
 import org.simple.clinic.widgets.UiEvent
 import javax.inject.Inject
 

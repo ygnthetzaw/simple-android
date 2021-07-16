@@ -38,8 +38,8 @@ import org.simple.clinic.scheduleappointment.facilityselection.FacilitySelection
 import org.simple.clinic.summary.AppointmentSheetOpenedFrom
 import org.simple.clinic.summary.teleconsultation.status.TeleconsultStatusSheet
 import org.simple.clinic.util.UserClock
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.Enabled
-import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.InProgress
+import org.simple.clinic.widgets.ButtonState.Enabled
+import org.simple.clinic.widgets.ButtonState.InProgress
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
