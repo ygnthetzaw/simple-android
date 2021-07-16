@@ -63,7 +63,7 @@ import org.simple.clinic.platform.crash.CrashReporter
 import org.simple.clinic.registration.phone.PhoneNumberValidator
 import org.simple.clinic.util.toOptional
 import org.simple.clinic.util.unsafeLazy
-import org.simple.clinic.widgets.ProgressMaterialButton
+import org.simple.clinic.widgets.ProgressMaterialButton_Old
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility.BOTH_VISIBLE
 import org.simple.clinic.widgets.ageanddateofbirth.DateOfBirthAndAgeVisibility.DATE_OF_BIRTH_VISIBLE
@@ -727,11 +727,11 @@ class PatientEntryScreen(
   }
 
   override fun nextButtonShowInProgress() {
-    saveButton.setButtonState(ProgressMaterialButton.ButtonState.InProgress)
+    saveButton.setButtonState(ProgressMaterialButton_Old.ButtonState.InProgress)
   }
 
   override fun enableNextButton() {
-    saveButton.setButtonState(ProgressMaterialButton.ButtonState.Enabled)
+    saveButton.setButtonState(ProgressMaterialButton_Old.ButtonState.Enabled)
   }
 
   interface Injector {

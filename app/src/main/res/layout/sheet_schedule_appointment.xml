@@ -149,7 +149,7 @@
       android:text="@string/scheduleappointment_not_now"
       tools:ignore="ButtonStyle" />
 
-    <org.simple.clinic.widgets.ProgressMaterialButton
+    <org.simple.clinic.widgets.ProgressMaterialButton_Old
       android:id="@+id/doneButton"
       style="?attr/materialButtonStyle"
       android:layout_width="0dp"
@@ -161,7 +161,7 @@
       app:buttonState="in-progress"
       tools:ignore="ButtonStyle" />
 
-    <org.simple.clinic.widgets.ProgressMaterialButton
+    <org.simple.clinic.widgets.ProgressMaterialButton_Old
       android:id="@+id/nextButton"
       style="?attr/materialButtonStyle"
       android:layout_width="0dp"

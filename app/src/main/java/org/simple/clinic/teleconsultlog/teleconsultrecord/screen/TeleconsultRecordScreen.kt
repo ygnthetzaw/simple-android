@@ -29,8 +29,8 @@ import org.simple.clinic.teleconsultlog.teleconsultrecord.TeleconsultationType.A
 import org.simple.clinic.teleconsultlog.teleconsultrecord.TeleconsultationType.Message
 import org.simple.clinic.teleconsultlog.teleconsultrecord.TeleconsultationType.Video
 import org.simple.clinic.util.UserClock
-import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.Enabled
-import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.InProgress
+import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.Enabled
+import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.InProgress
 import org.simple.clinic.widgets.UiEvent
 import javax.inject.Inject
 

@@ -37,8 +37,8 @@ import org.simple.clinic.util.RequestPermissions
 import org.simple.clinic.util.RuntimePermissions
 import org.simple.clinic.util.UserClock
 import org.simple.clinic.widgets.ItemAdapter
-import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.Enabled
-import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.InProgress
+import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.Enabled
+import org.simple.clinic.widgets.ProgressMaterialButton_Old.ButtonState.InProgress
 import org.simple.clinic.widgets.UiEvent
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

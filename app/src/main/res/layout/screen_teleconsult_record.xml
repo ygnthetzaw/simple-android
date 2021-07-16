@@ -162,7 +162,7 @@
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent">
 
-    <org.simple.clinic.widgets.ProgressMaterialButton
+    <org.simple.clinic.widgets.ProgressMaterialButton_Old
       android:id="@+id/doneButton"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

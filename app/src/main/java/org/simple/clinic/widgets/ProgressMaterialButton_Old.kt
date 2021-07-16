@@ -7,7 +7,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.button.MaterialButton
 import org.simple.clinic.R
 
-class ProgressMaterialButton(
+class ProgressMaterialButton_Old(
     context: Context,
     attrs: AttributeSet? = null
 ) : MaterialButton(context, attrs) {
@@ -28,8 +28,8 @@ class ProgressMaterialButton(
     buttonIcon = icon
     buttonIconGravity = iconGravity
 
-    val typeArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressMaterialButton)
-    buttonState = ButtonState.values()[typeArray.getInt(R.styleable.ProgressMaterialButton_buttonState, 0)]
+    val typeArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressMaterialButton_Old)
+    buttonState = ButtonState.values()[typeArray.getInt(R.styleable.ProgressMaterialButton_Old_buttonState, 0)]
 
     setButtonState(buttonState)
 
