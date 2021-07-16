@@ -140,6 +140,7 @@ android {
 
   buildFeatures {
     viewBinding = true
+    compose = true
   }
 
   flavorDimensions("track")
@@ -191,6 +192,11 @@ android {
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
+  }
+
+  composeOptions {
+    kotlinCompilerVersion = versions.kotlin
+    kotlinCompilerExtensionVersion = versions.compose
   }
 
   kotlinOptions {
@@ -427,6 +433,14 @@ dependencies {
   implementation("androidx.core:core-ktx:${versions.androidXCoreKtx}")
 
   implementation("org.threeten:threeten-extra:${versions.threetenExtra}")
+
+  implementation("androidx.compose.ui:ui:${versions.compose}")
+  implementation("androidx.compose.ui:ui-tooling:${versions.compose}")
+  implementation("androidx.compose.foundation:foundation:${versions.compose}")
+  implementation("androidx.compose.material:material:${versions.compose}")
+  implementation("androidx.compose.material:material-icons-core:${versions.compose}")
+  implementation("androidx.compose.runtime:runtime-livedata:${versions.compose}")
+  implementation("androidx.compose.runtime:runtime-rxjava2:${versions.compose}")
 }
 
 // This must always be present at the bottom of this file, as per:
