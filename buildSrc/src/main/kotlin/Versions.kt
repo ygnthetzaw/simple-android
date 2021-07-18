@@ -85,6 +85,7 @@ object Versions {
   const val annotationExperimental = "1.1.0"
   const val coroutines = "1.5.0"
   const val compose = "1.0.0-rc02"
+  const val composeViewModel = "1.0.0-alpha07"
 }
 
 val versions = Versions

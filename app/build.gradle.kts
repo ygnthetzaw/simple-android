@@ -442,6 +442,7 @@ dependencies {
   implementation("androidx.compose.runtime:runtime-livedata:${versions.compose}")
   implementation("androidx.compose.runtime:runtime-rxjava2:${versions.compose}")
   implementation("com.google.android.material:compose-theme-adapter:${versions.compose}")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${versions.composeViewModel}")
 }
 
 // This must always be present at the bottom of this file, as per:
