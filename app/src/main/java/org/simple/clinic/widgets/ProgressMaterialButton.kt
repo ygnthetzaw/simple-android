@@ -3,7 +3,6 @@ package org.simple.clinic.widgets
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -20,6 +19,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
@@ -27,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.material.composethemeadapter.MdcTheme
+import io.reactivex.subjects.PublishSubject
 import org.simple.clinic.R
 import org.simple.clinic.ui.theme.ButtonDefaults
 import org.simple.clinic.ui.theme.buttonBig
@@ -42,35 +44,35 @@ class ProgressMaterialButton(
   @StringRes
   private var text: Int? = null
 
+  private val buttonStates = PublishSubject.create<ButtonState>()
+
   init {
     val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressMaterialButton)
-    val buttonState = ButtonState.values()[typedArray.getInt(R.styleable.ProgressMaterialButton_state, 0)]
+    val initialState = ButtonState.values()[typedArray.getInt(R.styleable.ProgressMaterialButton_state, 0)]
 
     icon = typedArray.getResourceId(R.styleable.ProgressMaterialButton_icon, -1)
     text = typedArray.getResourceId(R.styleable.ProgressMaterialButton_text, -1)
 
     addView(ComposeView(context = context).apply {
-      setContent { Button(buttonState = buttonState) }
+      setContent {
+        MdcTheme {
+          val buttonState by buttonStates.subscribeAsState(initial = initialState)
+
+          ProgressMaterialButton(
+              icon = { if (icon != null && icon != NO_ID) Image(painter = painterResource(id = icon!!), contentDescription = "") },
+              text = { if (text != null && text != NO_ID) Text(text = stringResource(id = text!!), style = MaterialTheme.typography.buttonBig) },
+              onClick = { (parent as View).performClick() },
+              buttonState = buttonState
+          )
+        }
+      }
     })
 
     typedArray.recycle()
   }
 
   fun setButtonState(buttonState: ButtonState) {
-    val composeView = (this as ViewGroup).getChildAt(0) as ComposeView
-    composeView.setContent { Button(buttonState = buttonState) }
-  }
-
-  @Composable
-  fun Button(buttonState: ButtonState) {
-    MdcTheme {
-      ProgressMaterialButton(
-          icon = { if (icon != null && icon != NO_ID) Image(painter = painterResource(id = icon!!), contentDescription = "") },
-          text = { if (text != null && text != NO_ID) Text(text = stringResource(id = text!!), style = MaterialTheme.typography.buttonBig) },
-          onClick = { (parent as View).performClick() },
-          buttonState = buttonState
-      )
-    }
+    buttonStates.onNext(buttonState)
   }
 }
 
