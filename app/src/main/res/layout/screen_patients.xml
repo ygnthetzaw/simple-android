@@ -47,13 +47,11 @@
 
       </FrameLayout>
 
-      <org.simple.clinic.recentpatientsview.RecentPatientsView_Old
+      <org.simple.clinic.recentpatientsview.RecentPatientsView
         android:id="@+id/recentPatients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recentPatientsHeaderContainer"
-        android:background="?android:attr/colorBackground"
-        android:paddingTop="@dimen/spacing_8" />
+        android:layout_below="@+id/recentPatientsHeaderContainer" />
 
       <com.google.android.material.button.MaterialButton
         android:id="@+id/searchPatientsButton"
