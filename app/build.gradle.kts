@@ -441,6 +441,7 @@ dependencies {
   implementation("androidx.compose.material:material-icons-core:${versions.compose}")
   implementation("androidx.compose.runtime:runtime-livedata:${versions.compose}")
   implementation("androidx.compose.runtime:runtime-rxjava2:${versions.compose}")
+  implementation("com.google.android.material:compose-theme-adapter:${versions.compose}")
 }
 
 // This must always be present at the bottom of this file, as per:
