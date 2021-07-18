@@ -386,12 +386,12 @@
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true">
 
-    <org.simple.clinic.widgets.ProgressMaterialButton_Old
+    <org.simple.clinic.widgets.ProgressMaterialButton
       android:id="@id/saveButton"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/patiententry_save_patient"
-      app:buttonState="in-progress" />
+      app:text="@string/patiententry_save_patient"
+      app:state="in-progress" />
 
   </FrameLayout>
 
