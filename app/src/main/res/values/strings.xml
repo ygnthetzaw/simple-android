@@ -149,7 +149,7 @@
   <string name="patients_scan_simple_card">Scan ID</string>
   <string name="patients_recentpatients_title">Recent</string>
   <string name="patients_recentpatients_no_recent_patients">No recent patients</string>
-  <string name="patients_recentpatients_see_all">See All</string>
+  <string name="patients_recentpatients_see_all">SEE ALL</string>
   <string name="patients_recentpatients_nameage">%1$s, %2$s</string>
 
   <!-- Blood pressure entry -->

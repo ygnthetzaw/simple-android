@@ -44,6 +44,7 @@ import org.simple.clinic.newentry.PatientEntryScreen
 import org.simple.clinic.newentry.country.di.InputFieldsFactoryModule
 import org.simple.clinic.onboarding.OnboardingScreenInjector
 import org.simple.clinic.recentpatient.RecentPatientsScreen
+import org.simple.clinic.recentpatientsview.RecentPatientsView
 import org.simple.clinic.recentpatientsview.RecentPatientsView_Old
 import org.simple.clinic.removeoverdueappointment.RemoveOverdueAppointmentScreen
 import org.simple.clinic.router.ScreenResultBus
@@ -133,7 +134,8 @@ interface TheActivityComponent :
     CalendarDatePicker.Injector,
     TextInputDatePickerSheet.Injector,
     RemoveOverdueAppointmentScreen.Injector,
-    DrugsSearchScreen.Injector {
+    DrugsSearchScreen.Injector,
+    RecentPatientsView.Injector {
   fun inject(target: TheActivity)
 
   @Subcomponent.Factory
