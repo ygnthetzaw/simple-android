@@ -3,8 +3,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  tools:context="org.simple.clinic.recentpatientsview.RecentPatientsView"
-  tools:parentTag="org.simple.clinic.recentpatientsview.RecentPatientsView">
+  tools:context="org.simple.clinic.recentpatientsview.RecentPatientsView_Old"
+  tools:parentTag="org.simple.clinic.recentpatientsview.RecentPatientsView_Old">
 
   <TextView
     android:id="@+id/noRecentPatientsTextView"

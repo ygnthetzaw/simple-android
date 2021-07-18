@@ -28,7 +28,7 @@ import java.time.Instant
 import java.util.UUID
 import javax.inject.Inject
 
-class RecentPatientsView(
+class RecentPatientsView_Old(
     context: Context,
     attrs: AttributeSet
 ) : FrameLayout(context, attrs), LatestRecentPatientsUi, LatestRecentPatientsUiActions {
@@ -147,6 +147,6 @@ class RecentPatientsView(
   }
 
   interface Injector {
-    fun inject(target: RecentPatientsView)
+    fun inject(target: RecentPatientsView_Old)
   }
 }

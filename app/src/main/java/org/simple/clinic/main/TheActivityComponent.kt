@@ -44,7 +44,7 @@ import org.simple.clinic.newentry.PatientEntryScreen
 import org.simple.clinic.newentry.country.di.InputFieldsFactoryModule
 import org.simple.clinic.onboarding.OnboardingScreenInjector
 import org.simple.clinic.recentpatient.RecentPatientsScreen
-import org.simple.clinic.recentpatientsview.RecentPatientsView
+import org.simple.clinic.recentpatientsview.RecentPatientsView_Old
 import org.simple.clinic.removeoverdueappointment.RemoveOverdueAppointmentScreen
 import org.simple.clinic.router.ScreenResultBus
 import org.simple.clinic.scanid.ScanSimpleIdScreen
@@ -91,7 +91,7 @@ interface TheActivityComponent :
     HelpScreen.Injector,
     ReportsScreen.Injector,
     AddPhoneNumberDialog.Injector,
-    RecentPatientsView.Injector,
+    RecentPatientsView_Old.Injector,
     AssignedFacilityView.Injector,
     RecentPatientsScreen.Injector,
     FacilityPickerView.Injector,
