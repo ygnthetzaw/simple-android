@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -216,7 +215,6 @@ private fun RecentPatientsList(
   }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun RecentPatientItem(
     gender: Gender,

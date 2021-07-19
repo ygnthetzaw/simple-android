@@ -201,7 +201,10 @@ android {
 
   kotlinOptions {
     jvmTarget = "1.8"
-    freeCompilerArgs = freeCompilerArgs + listOf("-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi")
+    freeCompilerArgs = freeCompilerArgs + listOf(
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=androidx.compose.material.ExperimentalMaterialApi"
+    )
   }
 
   sourceSets {
