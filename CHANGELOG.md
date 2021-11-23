@@ -4,6 +4,27 @@
 
 ### Internal
 
+- Ask storage permission when download/share button is clicked
+- Add common download function for downloading overdue list
+- Fix flaky paging test cases
+- Bump Mixpanel to v5.9.5
+- Remove post delayed callbacks when view is detached from window
+- Remove canceling previously scheduled periodic work in `SyncScheduler`
+- Change SQL performance reporting to use begin and end hooks
+- Use view binding to inflate layout in `BaseDialog`
+- Fix overdue list file name in `OverdueListDownloader`
+- Send performance monitoring events to Datadog
+- Bump Mobius to v1.5.6
+- Enable overdue list download and share feature in India only
+
+### Changes
+
+- [In Progress: 23 Nov 2021] Add option to download & share overdue list
+
+## On Demo
+
+### Internal
+
 - Bump Dagger to v2.40
 - Bump WorkManager to v2.7.0
 - Migrate `SplashScreen` to a fragment
@@ -20,10 +41,11 @@
 - Migrate `TeleConsultSuccessScreen` to a Fragment
 - Migrate `ForgotPinCreateNewPinScreen` to a Fragment
 - Create demo user for Google Play reviews
-
-### Changes
-
-- [In Progress: 29 Oct 2021] Add option to download & share overdue list
+- Migrate `PatientEntryScreen` to use view effects
+- Bump Gradle to 7.3
+- Implement `OverdueDownloadWorker`
+- Show no internet connection dialog when download/share button is clicked
+- Save databases in failed instrumented tests as test artifacts
 
 ### Fixes
 
@@ -46,6 +68,7 @@
 - Implement CSV to PDF file converter
 - Add `OverdueListDownloadApi`
 - Migrate `ForgotPinConfirmPinScreen` to a Fragment
+- Remove tool for capturing of flaky tests
 
 ### Fixes
 

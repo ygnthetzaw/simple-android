@@ -1,9 +1,7 @@
 package org.simple.clinic.patient
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.JsonAdapter
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -56,6 +54,7 @@ import org.simple.clinic.protocol.ProtocolDrug
 import org.simple.clinic.reports.ReportsRepository
 import org.simple.clinic.reports.ReportsRepository.Companion.REPORTS_KEY
 import org.simple.clinic.rules.LocalAuthenticationRule
+import org.simple.clinic.rules.SaveDatabaseRule
 import org.simple.clinic.storage.text.TextStore
 import org.simple.clinic.user.User
 import org.simple.clinic.user.UserSession
@@ -141,18 +140,13 @@ class PatientRepositoryAndroidTest {
   val rules: RuleChain = Rules
       .global()
       .around(LocalAuthenticationRule())
-      .around(InstantTaskExecutorRule())
+      .around(SaveDatabaseRule())
 
   @Before
   fun setUp() {
     TestClinicApp.appComponent().inject(this)
     clock.setDate(LocalDate.parse("2018-01-01"))
     userClock.setDate(LocalDate.parse("2018-01-01"))
-  }
-
-  @After
-  fun tearDown() {
-    reportsRepository.deleteReports().blockingAwait()
   }
 
   @Test
@@ -833,8 +827,8 @@ class PatientRepositoryAndroidTest {
     val recentPatients = PagingTestCase(
         pagingSource = patientRepository.recentPatients(facilityUuid),
         loadSize = 20)
+        .loadPage()
         .data
-        .blockingFirst()
 
     assertThat(recentPatients).isEqualTo(listOf(recentPatient3, recentPatient1))
   }
@@ -945,8 +939,8 @@ class PatientRepositoryAndroidTest {
     val recentPatients = PagingTestCase(
         pagingSource = patientRepository.recentPatients(facilityUuid),
         loadSize = 20)
+        .loadPage()
         .data
-        .blockingFirst()
 
     assertThat(recentPatients).isEqualTo(listOf(recentPatient3, recentPatient1))
   }
@@ -991,8 +985,8 @@ class PatientRepositoryAndroidTest {
     val recentPatients = PagingTestCase(
         pagingSource = patientRepository.recentPatients(facilityUuid),
         loadSize = 20)
+        .loadPage()
         .data
-        .blockingFirst()
 
     assertThat(recentPatients).isEqualTo(listOf(recentPatient3, recentPatient1))
   }
@@ -1019,8 +1013,8 @@ class PatientRepositoryAndroidTest {
     val recentPatients = PagingTestCase(
         pagingSource = patientRepository.recentPatients(facilityUuid),
         loadSize = 20)
+        .loadPage()
         .data
-        .blockingFirst()
 
     assertThat(recentPatients).isEqualTo(listOf(recentPatient1))
   }
@@ -1056,13 +1050,13 @@ class PatientRepositoryAndroidTest {
     val recentPatientsInFromFacility = PagingTestCase(
         pagingSource = patientRepository.recentPatients(fromFacilityUuid),
         loadSize = 20
-    ).data.blockingFirst()
+    ).loadPage().data
     assertThat(recentPatientsInFromFacility).isEqualTo(listOf(recentPatient))
 
     val recentPatientsInToFacility = PagingTestCase(
         pagingSource = patientRepository.recentPatients(toFacilityUuid),
         loadSize = 20
-    ).data.blockingFirst()
+    ).loadPage().data
 
     assertThat(recentPatientsInToFacility).isEqualTo(emptyList<RecentPatient>())
   }
@@ -1078,8 +1072,8 @@ class PatientRepositoryAndroidTest {
     val recentPatients = PagingTestCase(
         pagingSource = patientRepository.recentPatients(facilityUuid),
         loadSize = 20)
+        .loadPage()
         .data
-        .blockingFirst()
 
     assertThat(recentPatients).isEqualTo(listOf(recentPatient2))
   }
@@ -2814,8 +2808,8 @@ class PatientRepositoryAndroidTest {
           loadSize = 10)
 
       return testCase
+          .loadPage()
           .data
-          .blockingFirst()
           .map { it.fullName }
     }
 
@@ -2916,8 +2910,8 @@ class PatientRepositoryAndroidTest {
           loadSize = 10)
 
       return testCase
+          .loadPage()
           .data
-          .blockingFirst()
           .map { it.fullName }
     }
 
@@ -3022,8 +3016,8 @@ class PatientRepositoryAndroidTest {
           loadSize = 10)
 
       return testCase
+          .loadPage()
           .data
-          .blockingFirst()
           .map { it.fullName }
     }
 

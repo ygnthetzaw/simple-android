@@ -15,21 +15,22 @@ buildscript {
   }
 
   dependencies {
-    val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs") as org.gradle.accessors.dm.LibrariesForLibs
     val roomMetaDataGeneratorVersion = libs.versions.room.metadataGenerator.get()
 
     classpath(libs.android.gradle.plugin)
-    classpath(libs.firebase.performance.plugin)
     classpath(libs.google.services)
     classpath(libs.kotlin.gradle.plugin)
     classpath(libs.sentry.gradle.plugin)
     classpath(files("./buildTooling/room-metadata-generator-${roomMetaDataGeneratorVersion}.jar"))
+    classpath(libs.datadog.gradle.plugin)
   }
 }
 
+// https://youtrack.jetbrains.com/issue/KTIJ-19369
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id("com.diffplug.spotless")
-  id("com.github.ben-manes.versions")
+  alias(libs.plugins.dependencyUpdates)
+  alias(libs.plugins.spotless)
 }
 
 allprojects {

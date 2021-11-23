@@ -17,19 +17,25 @@ class OverdueUpdate(
       is CallPatientClicked -> dispatch(OpenContactPatientScreen(event.patientUuid))
       is OverduePatientClicked -> dispatch(OpenPatientSummary(event.patientUuid))
       is OverdueAppointmentsLoaded -> dispatch(ShowOverdueAppointments(event.overdueAppointments, model.isDiabetesManagementEnabled))
-      DownloadOverdueListClicked -> downloadOverdueListClicked()
-      ShareOverdueListClicked -> shareOverdueListClicked()
+      is DownloadOverdueListClicked -> downloadOverdueListClicked(event)
+      is ShareOverdueListClicked -> shareOverdueListClicked(event)
     }
   }
 
-  // TODO: Trigger share overdue list effect
-  private fun shareOverdueListClicked(): Next<OverdueModel, OverdueEffect> {
-    return noChange()
+  private fun shareOverdueListClicked(event: ShareOverdueListClicked): Next<OverdueModel, OverdueEffect> {
+    return if (event.hasNetworkConnection) {
+      noChange()
+    } else {
+      dispatch(ShowNoActiveNetworkConnectionDialog)
+    }
   }
 
-  // TODO: Trigger download overdue list effect
-  private fun downloadOverdueListClicked(): Next<OverdueModel, OverdueEffect> {
-    return noChange()
+  private fun downloadOverdueListClicked(event: DownloadOverdueListClicked): Next<OverdueModel, OverdueEffect> {
+    return if (event.hasNetworkConnection) {
+      noChange()
+    } else {
+      dispatch(ShowNoActiveNetworkConnectionDialog)
+    }
   }
 
   private fun loadOverduePatients(

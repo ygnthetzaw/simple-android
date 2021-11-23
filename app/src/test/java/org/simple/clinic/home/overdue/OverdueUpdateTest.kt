@@ -3,14 +3,15 @@ package org.simple.clinic.home.overdue
 import androidx.paging.PagingData
 import com.spotify.mobius.test.NextMatchers.hasEffects
 import com.spotify.mobius.test.NextMatchers.hasModel
-import com.spotify.mobius.test.NextMatchers.hasNoEffects
 import com.spotify.mobius.test.NextMatchers.hasNoModel
 import com.spotify.mobius.test.UpdateSpec
 import com.spotify.mobius.test.UpdateSpec.assertThatNext
 import org.junit.Test
 import org.simple.clinic.TestData
+import org.simple.clinic.analytics.NetworkConnectivityStatus.INACTIVE
 import org.simple.clinic.facility.FacilityConfig
 import java.time.LocalDate
+import java.util.Optional
 import java.util.UUID
 
 class OverdueUpdateTest {
@@ -78,24 +79,24 @@ class OverdueUpdateTest {
   }
 
   @Test
-  fun `when download overdue list button is clicked, then do nothing`() {
+  fun `when download overdue list button is clicked and network is not connected, then show no active connection dialog`() {
     updateSpec
         .given(defaultModel)
-        .whenEvent(DownloadOverdueListClicked)
+        .whenEvent(DownloadOverdueListClicked(networkStatus = Optional.of(INACTIVE)))
         .then(assertThatNext(
             hasNoModel(),
-            hasNoEffects()
+            hasEffects(ShowNoActiveNetworkConnectionDialog)
         ))
   }
 
   @Test
-  fun `when share overdue list button is clicked, then do nothing`() {
+  fun `when share overdue list button is clicked and network is not connected, then show no active connection dialog`() {
     updateSpec
         .given(defaultModel)
-        .whenEvent(ShareOverdueListClicked)
+        .whenEvent(ShareOverdueListClicked(networkStatus = Optional.of(INACTIVE)))
         .then(assertThatNext(
             hasNoModel(),
-            hasNoEffects()
+            hasEffects(ShowNoActiveNetworkConnectionDialog)
         ))
   }
 }
