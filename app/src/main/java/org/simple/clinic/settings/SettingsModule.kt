@@ -39,7 +39,8 @@ class SettingsModule {
         ProvidedLanguage(displayName = "தமிழ் (இலங்கை)", languageCode = "ta-LK"),
         ProvidedLanguage(displayName = "Soomaali", languageCode = "so-ET"),
         ProvidedLanguage(displayName = "Sidama", languageCode = "sid-ET"),
-        ProvidedLanguage(displayName = "සිංහල", languageCode = "si-LK")
+        ProvidedLanguage(displayName = "සිංහල", languageCode = "si-LK"),
+        ProvidedLanguage(displayName = "မြန်မာ", languageCode = "my-MM")
     )
 
     return PreferencesSettingsRepository(

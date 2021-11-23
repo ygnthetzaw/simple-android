@@ -1,0 +1,932 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedQuantity">
+  <string name="app_name">Simple မြန်မာ</string>
+
+  <!-- Common -->
+  <string name="gender_female">မိန်းမ</string>
+  <string name="gender_male">ယောင်္ကျား</string>
+  <string name="gender_transgender">လိင်ပြောင်း</string>
+  <!--suppress UnusedResources -->
+  <string name="gender_male_letter">ကျား</string>
+  <!--suppress UnusedResources -->
+  <string name="gender_female_letter">မ</string>
+  <!--suppress UnusedResources -->
+  <string name="gender_trans_letter">ပြောင်း</string>
+  <string name="gender_unknown_letter" translatable="false">U</string>
+  <string name="api_unexpected_error">တစ်ခုခု အဆင်မပြေတာဖြစ်ပါလိမ့်မယ်။ ပြန်လုပ်ကြည့်ပေးပါ။</string>
+  <string name="api_network_error">အင်တာနက် ချိတ်ဆက်ပေးပါ</string>
+  <string name="api_server_error">ဆာဗာ ပြဿနာပါ။ နောက်မှ ပြန်စမ်းကြည့်ပါ။</string>
+
+  <!-- Country names -->
+  <string name="country_india">အိန္ဒိယ</string>
+  <string name="country_bangladesh">ဘင်္ဂလားဒေ့ရှ်</string>
+  <string name="country_ethiopia">အီသီယိုပီးယား</string>
+  <string name="country_sri_lanka">သီရီလင်္ကာ</string>
+  <string name="country_myanmar">မြန်မာ</string>
+
+  <!-- Home -->
+  <string name="home_help">အကူအညီ</string>
+  <string name="home_settings">စနစ်များ</string>
+
+  <!--Business id Identifier -->
+  <string name="identifiertype_bp_passport">BP Passport</string>
+<!--  <string name="identifiertype_bangladesh_national_id">နိုင်ငံသား မှတ်ပုံတင်နံပါတ်</string>-->
+<!--  <string name="identifiertype_ethiopia_medical_record_number">ဆေးကုသမှတ်တမ်း နံပါတ်</string>-->
+<!--  <string name="identifiertype_unknown">နံပါတ်</string>-->
+<!--  <string name="identifiertype_india_national_health_id">နိုင်ငံသားကျန်းမာရေးမှတ်ပုံတင် နံပါတ်</string>-->
+<!--  <string name="identifiertype_sri_lanka_national_id">နိုင်ငံသား မှတ်ပုံတင်နံပါတ်</string>-->
+<!--  <string name="identifiertype_sri_lanka_personal_health_number">တစ်ကိုယ်ရည်ကျန်းမာရေး နံပါတ်</string>-->
+
+  <!-- Patient search -->
+<!--  <string name="instantsearch_hint">နာမည်၊ ဖုန်း သို့ အိုင်ဒီနံပတ်</string>-->
+
+  <!-- Patient search results -->
+<!--  <string name="patientsearchresults_register_patient_rationale">စာရင်းထဲမှာ ကိုယ်လိုချင်တဲ့လူနာရှာမရဘူးလား?</string>-->
+<!--  <string name="patientsearchresults_register_patient">လူနာအသစ် စာရင်းသွင်းမယ်</string>-->
+<!--  <string name="patientsearchresults_item_last_seen">တွေ့ပြီးပါပြီ</string>-->
+<!--  <string name="patientsearchresults_item_phone_number">ဖုန်း</string>-->
+<!--  <string name="patientsearchresults_item_birthdate">မွေးနေ့</string>-->
+
+  <!-- Manual patient entry -->
+  <string name="patiententry_contentdescription_up_button">ရှာသည့်နေရာသွားမည်</string>
+  <string name="patiententry_full_name">လူနာမည်</string>
+  <string name="patiententry_phone_number">ဖုန်းနံပါတ်</string>
+  <string name="patiententry_bangladesh_national_id">နိုင်ငံသားမှတ်ပုံတင်အမှတ်</string>
+  <string name="patiententry_ethiopia_medical_record_number">ဆေးမှတ်တမ်းအမှတ်</string>
+  <string name="patiententry_sri_lanka_national_id">နိုင်ငံသားကျန်းမာရေးမှတ်ပုံတင်အမှတ်</string>
+  <string name="patiententry_sri_lanka_personal_health_number">ကိုယ်ပိုင်ကျန်းမာရေးအမှတ်</string>
+  <string name="patiententry_date_of_birth_unfocused">Date of birth</string>
+  <string name="patiententry_date_of_birth_focused">D.O.B: DD/MM/YYYY</string>
+  <string name="patiententry_dateofbirth_and_age_separator">(သို့)</string>
+  <string name="patiententry_age">အသက်</string>
+  <string name="patiententry_gender_female" translatable="false">@string/gender_female</string>
+  <string name="patiententry_gender_male" translatable="false">@string/gender_male</string>
+  <string name="patiententry_gender_transgender" translatable="false">@string/gender_transgender</string>
+  <string name="patiententry_street_address">အိမ်လိပ်စာ</string>
+  <string name="patiententry_street_house_road_number">အိမ်နှင့် လမ်းနာမည်</string>
+  <string name="patiententry_village_colony_ward">ရွာ / ကိုလိုနီ / ရပ်ကွက်</string>
+  <string name="patiententry_village_ward">ရွာ / ရပ်ကွက်</string>
+<!--  <string name="patiententry_kebele">Kebele</string>-->
+<!--  <string name="patiententry_zone">Union</string>-->
+<!--  <string name="patiententry_district">District</string>-->
+<!--  <string name="patiententry_woreda">Zone</string>-->
+<!--  <string name="patiententry_upazila">Upazila</string>-->
+<!--  <string name="patiententry_state">State</string>-->
+<!--  <string name="patiententry_region">Region</string>-->
+<!--  <string name="patiententry_doornumber_streetname">Door number, street name</string>-->
+<!--  <string name="patiententry_division_area">Division and area</string>-->
+<!--  <string name="patiententry_save_patient">Next</string>-->
+<!--  <string name="patiententry_error_empty_fullname">Enter patient’s full name</string>-->
+<!--  <string name="patiententry_error_empty_gender">Choose patient’s gender</string>-->
+<!--  <string name="patiententry_error_empty_colony_or_village">Required</string>-->
+<!--  <string name="patiententry_error_empty_district">Required</string>-->
+<!--  <string name="patiententry_error_state_empty">Required</string>-->
+<!--  <string name="patiententry_error_both_dateofbirth_and_age_empty">Enter patient’s age</string>-->
+<!--  <string name="patiententry_error_invalid_dateofbirth">Enter patient’s date of birth in DD/MM/YYYY</string>-->
+<!--  <string name="patiententry_error_dateofbirth_is_in_future">Fix patient’s date of birth</string>-->
+<!--  <string name="patiententry_error_phonenumber_blank">Phone number cannot be empty</string>-->
+<!--  <string name="patiententry_error_phonenumber_length_less">Phone number cannot be less than %1$s digits</string>-->
+<!--  <string name="patiententry_identifier_bp_passport">BP Passport</string>-->
+<!--  <string name="patiententry_consent_header">Consent:\u0020</string>-->
+<!--  <string name="patiententry_consent_first_para">By tapping below, you confirm that any patient data you enter here has been obtained under appropriate informed consent. This means that the patient or legal guardian knows that you are entering their personal data into the app, understands what data is being collected, and knows that they may be contacted via SMS, WhatsApp, or other methods using the phone number provided in the app.</string>-->
+<!--  <string name="patiententry_consent_second_para">Anyone authorized by you, or the healthcare provider for whom you work, will have access to the patient data and information you enter here. By using the app you confirm that the patient or legal guardian understands who will have access to the data obtained through this app and consents to that access.</string>-->
+<!--  <string name="patiententry_consent_whatsapp_sms_reminders">WhatsApp / SMS Reminders</string>-->
+<!--  <string name="patiententry_consent_sms_reminders">SMS Reminders</string>-->
+<!--  <string name="patiententry_age_exceeds_max_limit_error">Age cannot be more than 120 years</string>-->
+<!--  <string name="patiententry_age_exceeds_min_limit_error">Age cannot be equal to 0 years</string>-->
+<!--  <string name="patiententry_town_area">Town / Area</string>-->
+<!--  <string name="patiententry_province">Province</string>-->
+
+  <!-- Manual patient entry -->
+<!--  <string name="patiententry_contentdescription_up_button">ရှာတဲ့နေရာ ပြန်သွားမယ်</string>-->
+<!--  <string name="patiententry_full_name">လူနာ နာမည်</string>-->
+<!--  <string name="patiententry_phone_number">ဖုန်းနံပါတ်</string>-->
+<!--  <string name="patiententry_bangladesh_national_id">National ID number</string>-->
+<!--  <string name="patiententry_ethiopia_medical_record_number">Medical Record Number</string>-->
+<!--  <string name="patiententry_sri_lanka_national_id">National ID number</string>-->
+<!--  <string name="patiententry_sri_lanka_personal_health_number">Personal Health Number</string>-->
+<!--  <string name="patiententry_date_of_birth_unfocused">Date of birth</string>-->
+<!--  <string name="patiententry_date_of_birth_focused">D.O.B: DD/MM/YYYY</string>-->
+<!--  <string name="patiententry_dateofbirth_and_age_separator">(သို့)</string>-->
+<!--  <string name="patiententry_age">အသက်</string>-->
+<!--  <string name="patiententry_gender_female" translatable="false">@string/gender_female</string>-->
+<!--  <string name="patiententry_gender_male" translatable="false">@string/gender_male</string>-->
+<!--  <string name="patiententry_gender_transgender" translatable="false">@string/gender_transgender</string>-->
+<!--  <string name="patiententry_street_address">အိမ် လိပ်စာ</string>-->
+<!--  <string name="patiententry_street_house_road_number">အိမ်နဲ့လမ်းအမှတ်</string>-->
+<!--  <string name="patiententry_village_colony_ward">ရွာ / ကိုလိုနီ / ရပ်ကွက်</string>-->
+<!--  <string name="patiententry_village_ward">ရွာ / ရပ်ကွက်</string>-->
+  <string name="patiententry_kebele">Kebele</string>
+  <string name="patiententry_zone">ဇုံ</string>
+  <string name="patiententry_district">ခရိုင်</string>
+  <string name="patiententry_woreda">ဇုန်</string>
+  <string name="patiententry_upazila">Upazila</string>
+  <string name="patiententry_state">ပြည်နယ်</string>
+  <string name="patiententry_region">တိုင်းဒေသကြီး</string>
+  <string name="patiententry_doornumber_streetname">အိမ်နံပါတ်၊ လမ်းနာမည်</string>
+  <string name="patiententry_division_area">တိုင်းနှင့်နယ်မြေ</string>
+  <string name="patiententry_save_patient">ဆက်သွားမည်</string>
+  <string name="patiententry_error_empty_fullname">နာမည်အပြည့်အစုံရိုက်ထည့်ပါ</string>
+  <string name="patiententry_error_empty_gender">ကျား (သို့) မ ရွေးပါ</string>
+  <string name="patiententry_error_empty_colony_or_village">လိုအပ်ပါသည်</string>
+  <string name="patiententry_error_empty_district">လိုအပ်ပါသည်</string>
+  <string name="patiententry_error_state_empty">လိုအပ်ပါသည်</string>
+  <string name="patiententry_error_both_dateofbirth_and_age_empty">လူနာအသက်ထည့်ပါ</string>
+  <string name="patiententry_error_invalid_dateofbirth">လူနာ၏မွေးနေ့ကို နေ့/လ/နှစ် အတိုင်းထည့်ပေးပါ</string>
+  <string name="patiententry_error_dateofbirth_is_in_future">လူနာမွေးနေ့ ပြင်မယ်</string>
+  <string name="patiententry_error_phonenumber_blank">ဖုန်းနံပါတ် ချန်ခဲ့လို့မရပါ</string>
+  <string name="patiententry_error_phonenumber_length_less">ဖုန်းနံပါတ် ဂဏန်း အနည်းဆုံး %1$s ခုရှိရပါမည်</string>
+  <string name="patiententry_identifier_bp_passport">သွေးတိုးရောဂါသည် မှတ်ပုံတင်</string>
+  <string name="patiententry_consent_header">သဘောတူညီချက်:\u0020</string>
+  <string name="patiententry_consent_first_para">လူနာမှ ၄င်း၏ ကျန်းမာရေးနှင့် ကိုယ်ရေးအချက်အလက်များကို ရယူမည်ကို သိရှိပြီး ပေးထားတဲ့ ဖုန်းနံပါတ်သို့ SMS စာတို ပို့ခြင်း၊ WhatsApp အကောင့်ရှိပါက WhatsApp အကောင့်သို့ စာတိုပို့ခြင်း၊ ဖုန်းခေါ်ဆိုခြင်းတို့ လုပ်ဆောင်မည်ဖြစ်ကြောင်း သိရှိလက်ခံပါသည်။</string>
+  <string name="patiententry_consent_second_para">ဖြည့်သွင်းထားသည့်လူနာအချက်အလက်များကို သင် လုပ်ကိုင်သည့် ကျန်းမာရေးအဖွဲ့အစည်းမှ ရယူနိုင်ပြီး လူနာကိုယ်တိုင် သို့မဟုတ် အုပ်ထိန်းသူမှ ၄င်း၏ကျန်းမာရေး အချက်အလက်များကို မည်သူက ရယူ သိမ်းဆည်းထားမည်ကို ၄င်းက နားလည်လက်ခံသိရှိပါသည်။</string>
+  <string name="patiententry_consent_whatsapp_sms_reminders">WhatsApp / SMS သတိပေးချက်များ</string>
+  <string name="patiententry_consent_sms_reminders">SMS သတိပေးချက်များ</string>
+  <string name="patiententry_age_exceeds_max_limit_error">အသက် ၁၂၀ နှစ်ထက် မများရပါ</string>
+  <string name="patiententry_age_exceeds_min_limit_error">အသက ၁ နှစ်ထက် မနည်းရပါ</string>
+  <string name="patiententry_town_area">မြို့ / ပတ်ဝန်းကျင်</string>
+  <string name="patiententry_province">ပြည်နယ်</string>
+
+  <!-- Edit patient -->
+  <string name="patientedit_full_name" translatable="false">@string/patiententry_full_name</string>
+  <string name="patientedit_phone_number" translatable="false">@string/patiententry_phone_number</string>
+  <string name="patientedit_gender_female" translatable="false">@string/gender_female</string>
+  <string name="patientedit_gender_male" translatable="false">@string/gender_male</string>
+  <string name="patientedit_gender_transgender" translatable="false">@string/gender_transgender</string>
+  <string name="patientedit_error_empty_gender" translatable="false">@string/patiententry_error_empty_gender</string>
+  <string name="patientedit_colony_or_village" translatable="false">@string/patiententry_village_colony_ward</string>
+  <string name="patientedit_district" translatable="false">@string/patiententry_district</string>
+  <string name="patientedit_state" translatable="false">@string/patiententry_state</string>
+  <string name="patientedit_save_patient">သိမ်းဆည်းမည်။</string>
+  <string name="patientedit_error_empty_fullname" translatable="false">@string/patiententry_error_empty_fullname</string>
+  <string name="patientedit_error_empty_colony_or_village" translatable="false">@string/patiententry_error_empty_colony_or_village</string>
+  <string name="patientedit_error_empty_district" translatable="false">@string/patiententry_error_empty_district</string>
+  <string name="patientedit_error_state_empty" translatable="false">@string/patiententry_error_state_empty</string>
+  <string name="patientedit_error_phonenumber_blank" translatable="false">@string/patiententry_error_phonenumber_blank</string>
+  <string name="patientedit_error_phonenumber_length_less" translatable="false">@string/patiententry_error_phonenumber_length_less</string>
+  <string name="patientedit_date_of_birth_unfocused" translatable="false">@string/patiententry_date_of_birth_unfocused</string>
+  <string name="patientedit_date_of_birth_focused" translatable="false">@string/patiententry_date_of_birth_focused</string>
+  <string name="patientedit_dateofbirth_and_age_separator" translatable="false">@string/patiententry_dateofbirth_and_age_separator</string>
+  <string name="patientedit_bp_passports_label">သွေးတိုးရောဂါသည် မှတ်ပုံတင်များ</string>
+  <string name="patientedit_age" translatable="false">@string/patiententry_age</string>
+  <string name="patientedit_error_both_dateofbirth_and_age_empty" translatable="false">@string/patiententry_error_both_dateofbirth_and_age_empty</string>
+  <string name="patientedit_error_invalid_dateofbirth" translatable="false">@string/patiententry_error_invalid_dateofbirth</string>
+  <string name="patientedit_error_dateofbirth_is_in_future" translatable="false">@string/patiententry_error_dateofbirth_is_in_future</string>
+  <string name="patientedit_confirm_discard_title">ပြင်ထားတာတွေ ပယ်မလား?</string>
+  <string name="patientedit_confirm_discard_ok">ပယ်လိုက်မည်</string>
+  <string name="patientedit_confirm_discard_cancel">မလုပ်တော့ပါ</string>
+  <string name="patientedit_bangladesh_national_id" translatable="false">@string/patiententry_bangladesh_national_id</string>
+  <string name="patientedit_street_address" translatable="false">@string/patiententry_street_address</string>
+  <string name="patientedit_zone" translatable="false">@string/patiententry_zone</string>
+  <string name="patientedit_delete_patient">ဖျက်မည်</string>
+
+  <!-- Home: Tabs -->
+  <!-- Lint fails to find usages for these strings. -->
+  <!--suppress UnusedResources -->
+  <string name="tab_patient">လူနာများ</string>
+  <!--suppress UnusedResources -->
+  <string name="tab_overdue">ချိန်းရက်လွန်သူများ</string>
+  <!--suppress UnusedResources -->
+  <string name="tab_progress">တိုးတက်မှု</string>
+
+  <string name="home_search_patient_name_phone">နာမည်၊ ဖုန်း၊ အိုင်ဒီနံပါတ် ရိုက်ထည့်ရှာပါ</string>
+  <string name="patients_user_awaiting_approval_title">ဝင်ခွင့်ပြုရန် စောင့်ဆိုင်းပါ</string>
+  <string name="patients_user_awaiting_approval_message">ခွင့်ပြုချက်ရသည်နှင့် သင့်ဆေးခန်း ကျန်းမာရေးဌာန မှ လူနာမှတ်တမ်းများကို ကြည့်ခွင့်ရပါမည်။ျ</string>
+  <string name="patients_user_approved_title">ဝင်ခွင့်ပြုလိုက်ပါပြီ</string>
+  <string name="patients_awaiting_sms_verification_title">SMS နဲ့ စီစစ်ရန်စောင့်ဆိုင်းပါ</string>
+  <string name="patients_user_approved_message">ယခု သင့်ရဲ့ ကျန်းမာရေးဌာနမှ လူနာမှတ်တမ်းများကို တွေ့မြင်နိုင်ပါပြီ</string>
+  <string name="patients_awaiting_sms_verification_message">စီစစ်ပြီးသည်နှင့် သင့်ရဲ့ ကျန်းမာရေးဌာနမှ လူနာမှတ်တမ်းများကို ရယူနိုင်ပါပြီ</string>
+  <string name="patients_dismiss_user_approved_status">ရသွားပြီ</string>
+  <string name="patients_enter_code">ကုဒ်ရိုက်ထည့်ပါ</string>
+  <string name="patients_you_are_now_logged_in">စီစစ်တာ အောင်မြင်ပါတယ်! ယခု လူနာမှတ်တမ်းများ တွေ့မြင်ရပါမည်။</string>
+  <string name="patients_loggedoutalert_title">တစ်ကြိမ်မှာ ဖုန်းတစ်လုံးတည်းပဲ ဝင်လို့ရပါမည်</string>
+  <string name="patients_loggedoutalert_message">အရင်ဝင်ခဲ့တဲ့ဖုန်းတွေကနေ ထွက်လိုက်ပါပြီ</string>
+  <string name="patients_loggedoutalert_dismiss">ရပါပြီ</string>
+  <string name="patients_scan_simple_card">အိုင်ဒီ ဖတ်မည်</string>
+  <string name="patients_recentpatients_title">လတ်တလော</string>
+  <string name="patients_recentpatients_no_recent_patients">လတ်တလော လူနာမရှိသေးပါ</string>
+  <string name="patients_recentpatients_see_all">အကုန်ကြည့်မည်</string>
+  <string name="patients_recentpatients_nameage">%1$s, %2$s</string>
+
+  <!-- Blood pressure entry -->
+  <string name="bloodpressureentry_sheet_title_enter_blood_pressure">သွေးပေါင်ချိန်</string>
+  <string name="bloodpressureentry_sheet_title_edit_blood_pressure">သွေးပေါင်ချိန် ပြင်မည်</string>
+  <string name="bloodpressureentry_sheet_title_enter_date">ချိန်းဆိုမည့်နေ့</string>
+  <string name="bloodpressureentry_remove">ဖျက်ပါ</string>
+  <string name="bloodpressureentry_systolic">Systolic</string>
+  <string name="bloodpressureentry_diastolic">Diastolic</string>
+  <string name="bloodpressureentry_day">နေ့</string>
+  <string name="bloodpressureentry_month">လ</string>
+  <string name="bloodpressureentry_year">နှစ်</string>
+  <string name="bloodpressureentry_error_systolic_more">Systolic should be more than diastolic</string>
+  <string name="bloodpressureentry_error_systolic_70">Systolic cannot be less than 70</string>
+  <string name="bloodpressureentry_error_systolic_300">Systolic cannot be more than 300</string>
+  <string name="bloodpressureentry_error_diastolic_40">Diastolic cannot be less than 40</string>
+  <string name="bloodpressureentry_error_diastolic_180">Diastolic cannot be more than 180</string>
+  <string name="bloodpressureentry_error_systolic_empty">Enter systolic and diastolic pressures</string>
+  <string name="bloodpressureentry_error_diastolic_empty">Enter systolic and diastolic pressures</string>
+  <string name="bloodpressureentry_error_date_invalid_pattern">နေ့/လ/နှစ် အတိုင်းထည့်ပေးပါ</string>
+  <string name="bloodpressureentry_error_date_is_in_future">နေ့ကို ကြိုထည့်လို့မရပါ</string>
+  <string name="bloodpressureentry_remove_bp_title">သွေးတိုင်းမှတ်တမ်း ဖျက်ရန်</string>
+  <string name="bloodpressureentry_remove_bp_message">အဲဒီ သွေးတိုင်းမှတ်တမ်း ဖျက်ပစ်မှာ သေချာပါသလား?</string>
+  <string name="bloodpressureentry_remove_bp_confirm">ဖျက်မည်</string>
+  <string name="bloodpressureentry_remove_bp_cancel">မလုပ်တော့ပါ</string>
+  <string name="bloodpressureentry_date_change">ပြင်မည်</string>
+
+  <!-- Patient summary -->
+  <string name="patientsummary_contentdescription_up_button">နောက်ပြန်သွားပါ</string>
+  <string name="patientsummary_prescriptions_add">ဆေးဝါးများ</string>
+  <string name="patientsummary_prescriptions_update">ဆေးဝါးများ ပြင်ရန်</string>
+  <string name="patientsummary_bp_add_new">သွေးပေါင်ချိန်</string>
+  <string name="patientsummary_finish_saving_patient">သိမ်းယူမည်</string>
+  <string name="patientsummary_finish_refill_medicine">ဆေးဝါးပြန် ဖြည့်မည်</string>
+  <string name="patientsummary_bp_none_added">သွေးပေါင်ချိန် မှတ်တမ်း မထည့်ထားပါ</string>
+  <string name="patientsummary_edit">ပြန်ပြင်ရန်</string>
+
+  <string name="patientsummary_updatephone_dialog_title">ဖုန်းနံပတ် ပြင်မည်</string>
+  <string name="patientsummary_updatephone_dialog_message">ယခင်က လူနာ၏ဖုန်းနံပါတ် မှားယွင်းသည်ဟု သတ်မှတ်ထားပါတယ်</string>
+  <string name="patientsummary_updatephone_phone_hint">ဖုန်းနံပါတ်</string>
+  <string name="patientsummary_updatephone_save">သွင်းယူမည်</string>
+  <string name="patientsummary_updatephone_cancel">ချန်လှပ်မည်</string>
+  <string name="patientsummary_updatephone_error_phonenumber_empty" translatable="false">@string/patiententry_error_phonenumber_blank</string>
+  <string name="patientsummary_updatephone_error_phonenumber_length_less" translatable="false">@string/patiententry_error_phonenumber_length_less</string>
+
+  <string name="patientsummary_addphone_dialog_title">ဖုန်းနံပါတ် ပြင်ရန်</string>
+  <string name="patientsummary_addphone_dialog_message">စာရင်းသွင်းချိန်မှာ လူနာဖုန်းနံပါတ် မထည့်ထားပါ</string>
+  <string name="patientsummary_addphone_phone_hint">ဖုန်းနံပါတ်</string>
+  <string name="patientsummary_addphone_save">သွင်းယူမည်</string>
+  <string name="patientsummary_addphone_cancel">ချန်လှပ်မည်</string>
+  <string name="patientsummary_addphone_error_phonenumber_empty" translatable="false">@string/patiententry_error_phonenumber_blank</string>
+  <string name="patientsummary_addphone_error_phonenumber_length_less" translatable="false">@string/patiententry_error_phonenumber_length_less</string>
+  <string name="patientsummary_newbp_date_time" translatable="false">%1$s\n%2$s</string>
+  <string name="patientsummary_toolbar_title">%1$s, %2$s, %3$s</string>
+
+  <string name="patientsummary_teleconsult">ဖုန်းနဲ့ တိုင်ပင်ဆွေးနွေးမည်</string>
+  <string name="patientsummary_contact_doctor_diagnosis" translatable="false">*ရောဂါရှာဖွေခြင်း*:</string>
+  <string name="patientsummary_contact_doctor_diagnosis_hypertension" translatable="false">သွေးတိုး:</string>
+  <string name="patientsummary_contact_doctor_diagnosis_diabetes" translatable="false">သွေးချို:</string>
+  <string name="patientsummary_contact_doctor_diagnosis_answer_yes" translatable="false">ရှိတယ်</string>
+  <string name="patientsummary_contact_doctor_diagnosis_answer_no" translatable="false">မရှိပါ</string>
+  <plurals name="patientsummary_contact_doctor_patient_info_bps" translatable="false">
+    <item quantity="one">*နောက်ဆုံး %s သွေးတိုင်း မှတ်သားခြင်း*:</item>
+    <item quantity="other">*နောက်ဆုံး %s Bသွေးတိုင်း မှတ်သားခြင်းများ*:</item>
+  </plurals>
+  <plurals name="patientsummary_contact_doctor_patient_info_blood_sugars" translatable="false">
+    <item quantity="one">*နောက်ဆုံး %s သွေးတွင်း သကြားတိုင်းတာခြင်း *:</item>
+    <item quantity="other">*နောက်ဆုံး %s သွေးတွင်း သကြားတိုင်းတာခြင်းများ*:</item>
+  </plurals>
+  <string name="patientsummary_log_teleconsult">ဖုန်းအကြံပေး မှတ်တမ်း</string>
+
+  <string name="patientsummary_registered_faciliy_title">စာရင်းသွင်းပြီး</string>
+  <string name="patientsummary_registered_facility">%1$s မှာ %2$s</string>
+
+  <string name="bloodpressuresummaryview_see_all_button">အားလုံးကြည့်မည်</string>
+
+  <!-- Lint fails to find usages for these strings. -->
+  <!--suppress UnusedResources -->
+  <string name="bloodpressure_level_low">နည်း</string>
+  <!--suppress UnusedResources -->
+  <string name="bloodpressure_level_high">များ</string>
+
+  <string name="bloodsugar_level_low">နည်း</string>
+  <string name="bloodsugar_level_high">များ</string>
+
+  <string name="timestamp_today">ဒီနေ့</string>
+  <string name="timestamp_yesterday">မနေ့</string>
+  <!--suppress PluralsCandidate -->
+  <string name="timestamp_days_ago">လွန်ခဲ့သော %s နေ့က</string>
+
+  <!-- Prescribed drugs -->
+  <string name="patient_prescribeddrugs_screen_title">ဆေးဝါးများ</string>
+  <string name="patient_prescribeddrugs_add_custom_prescription">နောက်ထပ် ဆေးဝါးထည့်မည်</string>
+
+  <string name="customprescription_enter_medicine">ဆေးအမည် ထည့်ပါ</string>
+  <string name="customprescription_edit_medicine">ဆေးအမည် ပြင်မည်</string>
+  <string name="customprescription_save_drug">သွင်းယူမည်</string>
+  <string name="customprescription_drug_name_hint">ဆေးဝါး အမည်</string>
+  <string name="customprescription_dosage_placeholder" translatable="false">mg</string>
+  <string name="customprescription_drug_dosage_hint">ဆေးသောက်ကြိမ်</string>
+
+  <string name="customprescription_delete_title">ဆေးဝါး ပယ်ဖျက်မည်</string>
+  <string name="customprescription_delete_message">ဒီဆေးကို စာရင်းမှ ဖျက်မှာ သေချာပါသလား?</string>
+  <string name="customprescription_delete_confirm">ဖျက်ပါ</string>
+  <string name="customprescription_delete_cancel">မဖျက်ပါ</string>
+
+  <!-- Login -->
+<!--  <string name="loginpin_go_back">ဖုန်းနံပါတ် ရိုက်သည့်နေရာ ပြန်သွားမည်</string>-->
+
+  <!-- App lock -->
+<!--  <string name="applock_logout">သင် မဟုတ်ဘူးလား?</string>-->
+<!--  <string name="applock_reset_pin_alert_title">လုံခြုံရေး ကုဒ်နံပါတ် ပြန်သတ်မှတ်မယ်?</string>-->
+<!--  <string name="applock_reset_pin_alert_message">သင့်ရဲ့ လုံခြုံရေး ကုဒ်နံပါတ် ပြန်သတ်မှတ်မှာ ဟုတ်ပါသလား?</string>-->
+<!--  <string name="applock_reset_pin_alert_confirm">ပြန်သတ်မှတ်ပါ</string>-->
+<!--  <string name="applock_reset_pin_alert_cancel">မလုပ်ပါ</string>-->
+
+  <!-- PIN entry -->
+<!--  <string name="pinentry_forgotpin">ကုဒ်နံပါတ် မေ့သွားလို့?</string>-->
+<!--  <string name="pinentry_error_incorrect_pin_on_first_attempt">နဂိုကုဒ်နံပါတ်နှင့် ရိုက်ထည့်သည့်ကုဒ်နံပါတ် မတူပါ</string>-->
+<!--  <string name="pinentry_error_incorrect_pin_attempts_remaining" tools:ignore="PluralsCandidate">ကုဒ်နံပါတ်မှားနေသည်၊ %s ကြိမ် ကြိုးစားခွင့်ရှိသေးသည်</string>-->
+<!--  <string name="pinentry_error_incorrect_pin_attempts_limit_reached" tools:ignore="PluralsCandidate">သင် မှားရိုက်မိသည့်မှာ %s ကြိမ်ရှိပါပြီ</string>-->
+<!--  <string name="pinentry_pin_number_hint">သင့်၏လုံခြုံရေး ကုဒ်နံပါတ်</string>-->
+<!--  <string name="pinentry_bruteforcelock_timer_label">နည်းနည်းကြာမှ ပြန်ဝင်ကြည့်ပါ</string>-->
+<!--  <string name="pinentry_bruteforcelock_timer" translatable="false">%1$s:%2$s</string> &lt;!&ndash; minutes:seconds &ndash;&gt;-->
+
+  <!-- Registration -->
+<!--  <string name="registrationphone_phone_number_label">သင့်ဖုန်းနံပါတ်</string>-->
+<!--  <string name="registrationphone_error_invalid_number">ဖုန်းနံပါတ်ပြန်စစ်ပါ၊ အရမ်းတိုနေပါတယ်၊</string>-->
+<!--  <string name="registrationphone_error_unexpected_error" translatable="false">@string/api_unexpected_error</string>-->
+<!--  <string name="registrationphone_error_check_internet_connection" translatable="false">@string/api_network_error</string>-->
+<!--  <string name="registration_loggedout_dialog_title">စနစ်မှ ထွက်လိုက်ပါပြီ</string>-->
+<!--  <string name="registration_loggedout_dialog_message">စနစ်ထဲကိုဝင်ပြီး ဆက်သွားပါ</string>-->
+<!--  <string name="registration_loggedout_dialog_confirm">အိုကေ</string>-->
+<!--  <string name="registrationphone_country_code" translatable="false">+%1$s</string>-->
+<!--  <string name="registrationphone_next">ဆက်မည်</string>-->
+
+<!--  <string name="registrationname_name_label">သင့်၏ တာဝန် နှင့် နာမည်အပြည့်ထည့်ပါ</string>-->
+<!--  <string name="registrationname_error_empty_name">သင့်နာမည်အပြည့်အစုံကို ထည့်ပါ</string>-->
+<!--  <string name="registrationname_next">ဆက်မည်</string>-->
+<!--  <string name="registrationname_name_and_role_hint">Example: Nurse Shwe Moe</string>-->
+
+<!--  <string name="registrationpin_pin_label">သင့်ကိုယ်ပိုင် လုံခြုံရေးနံပါတ် ပြုလုပ်ပါ</string>-->
+<!--  <string name="registrationpin_pin_hint">ကိုယ့်ကုဒ်နံပါတ်ကိုမှတ်ထားပါ၊ နောက်တော့ လိုအပ်ပါတယ်</string>-->
+<!--  <string name="registrationpin_error_incomplete_pin">ကုဒ်နံပါတ်တိုပါတယ်၊ ဂဏန်း ၄ လုံး ရိုက်ထည့်ပါ</string>-->
+
+<!--  <string name="registrationconfirmpin_confirm_pin_label">လုံခြုံရေးနံပါတ် ပြန်ထည့်ပါ</string>-->
+<!--  <string name="registrationconfirmpin_hint" translatable="false">@string/registrationpin_pin_hint</string>-->
+<!--  <string name="registrationconfirmpin_error_pin_mismatch">နဂိုကုဒ်နံပါတ်နှင့် ရိုက်ထည့်သည့်ကုဒ်နံပါတ် မတူပါ</string>-->
+<!--  <string name="registrationconfirmpin_reset_pin">လုံခြုံရေးနံပါတ် ပြန်သတ်မှတ်မည်</string>-->
+
+<!--  <string name="registrationlocation_screen_title">တည်နေရာ ရယူမည်</string>-->
+<!--  <string name="registrationlocation_skip_permission">ကျော်သွားပါ။</string>-->
+<!--  <string name="registrationlocation_permission_rationale_description">သင့်တည်နေရာနဲ့ ဆေးခန်းတွေကူရှာပေးနိင်ပါတယ်</string>-->
+<!--  <string name="registrationlocation_permission_rationale_title">သင့်ဆေးခန်းကို လျှင်လျှင်မြန်မြန် ရှာပါ</string>-->
+<!--  <string name="registrationlocation_allow_access">တည်နေရာ ရယူရန် ခွင့်ပြုသည်</string>-->
+
+  <!-- Onboarding -->
+<!--  <string name="onboarding_get_started">စတင်လိုက်ပါ</string>-->
+<!--  <string name="screenonboarding_intro_1">ရှာဖွေပါ \&amp; လူနာထောင်ပေါင်းများစွာထဲမှ \n</string>-->
+<!--  <string name="screenonboarding_intro_1_hypertension">\ သွေးတိုး</string>-->
+<!--  <string name="screenonboarding_intro_2">မှတ်တမ်းများ ထိန်းသိမ်းမယ် \n</string>-->
+<!--  <string name="screenonboarding_intro_2_bp">သွေးတိုင်းတာခြင်းများ \n</string>-->
+<!--  <string name="screenonboarding_intro_2_and">\&amp;</string>-->
+<!--  <string name="screenonboarding_intro_2_medicines">\ ဆေးဝါများ</string>-->
+<!--  <string name="screenonboarding_intro_3">လူနာ အတွက်</string>-->
+<!--  <string name="screenonboarding_intro_3_reminder">\nသတိပေး စာတိုများ</string>-->
+<!--  <string name="screenonboarding_intro_3_visits">\n ပြန်လည်ချိန်းဆို ဆေးစစ်ရန် ပို့ပေးပါတယ်</string>-->
+
+  <!-- Overdue List -->
+  <string name="overdue_no_patients">ချိန်းရက်လွန် လူနာမရှိပါ</string>
+  <string name="overdue_empty_desc">သွေးပေါင်ချိန်တိုင်းတာရန်အတွက် ချိန်းဆိုပြီးပျက်ကွက်သည့် လူများကို သင့် ဖုန်းခေါ်နိုင်ပါမည်</string>
+  <string name="overdue_list_item_name_age">%s, %s</string>
+  <string name="overdue_list_item_diagnosis_diabetes">သွေးချို</string>
+  <string name="overdue_list_item_diagnosis_hypertension">သွေးတိုး</string>
+  <string name="overdue_list_item_diagnosis_none">မရှိပါ</string>
+  <plurals name="overdue_list_item_appointment_overdue_days">
+    <item quantity="one">%s ရက်လွန်</item>
+    <item quantity="other">%s ရက်လွန်</item>
+  </plurals>
+  <string name="overdue_list_item_village">ရွာ</string>
+  <string name="overduelist_diagnosis_label">Dx</string>
+  <string name="overduelist_visited">ပြသပြီး</string>
+  <string name="overduelist_high_risk">အန္တရာယ် များတယ်</string>
+  <string name="overduelist_transferred">သို့ လွဲပြောင်းပြီး</string>
+  <string name="overdue_download">ဒေါင်းလုပ်ဒ်ယူမည်</string>
+  <string name="overdue_share">မျှဝေမည်</string>
+
+  <!-- Facility change -->
+
+  <!-- Enter OTP -->
+  <string name="enterotp_check_sms_sent_to">SMS ပို့လိုက်ပါပြီ </string>
+  <string name="enterotp_phonenumber" translatable="false">+%1$s %2$s</string>
+  <string name="enterotp_enter_verification_code">SMS မှ ကုဒ်နံပါတ်ရိုက်ထည့်ပါ</string>
+  <string name="enterotp_incorrect_code">ကုဒ်နံပတ်မှားနေတယ်။ ပြန်စမ်းကြည့်ပါ</string>
+  <string name="enterotp_resend_sms">SMS ပြန်ပို့ပေးပါ</string>
+  <string name="enterotp_sms_sent">နောက်ထပ် SMS နံပါတ် ပို့လိုက်ပါပြီ</string>
+  <string name="enterotp_try_again_after">ခဏနေရင် ပြန်စမ်းကြည့်ပါ</string>
+  <string name="otpentry_error_incorrect_otp_attempts_limit_reached" tools:ignore="PluralsCandidate">မှားဝင်သည့် %s အကြိမ်အရေအတွက်</string>
+  <string name="otpentry_error_incorrect_otp_attempts_remaining">ကုဒ်မှားနေပါတယ်, %s ကြိမ် ကြိုးစားခွင့်ရှိသေးသည် </string>
+  <string name="otpentry_bruteforcelock_timer" translatable="false">%1$s:%2$s</string> <!-- minutes:seconds -->
+
+  <!-- Schedule appointment -->
+  <string name="scheduleappointment_next_visit_in">နောက်ထပ် ကြိုတင်ချိန်းဆိုရန်</string>
+  <string name="scheduleappointment_not_now">မချိန်းသေးဘူး</string>
+  <string name="scheduleappointment_done">ချိန်းဆိုမယ်</string>
+  <string name="scheduleappointment_next">နောက်ထပ်</string>
+  <plurals name="scheduleappointment_appointment_in_days">
+    <item quantity="one">%s နေ့</item>
+    <item quantity="other">ရက် %s </item>
+  </plurals>
+  <plurals name="scheduleappointment_appointment_in_weeks">
+    <item quantity="one">%s ပတ်</item>
+    <item quantity="other">%s ပတ်</item>
+  </plurals>
+  <plurals name="scheduleappointment_appointment_in_months">
+    <item quantity="one">%s လ</item>
+    <item quantity="other">%s လ</item>
+  </plurals>
+
+  <!-- Forgot PIN -->
+  <string name="forgotpin_create_new_pin">လုံခြုံရေးနံပတ်အသစ်လုပ်မယ်</string>
+  <string name="forgotpin_create_new_pin_invalid_pin">နံပါတ်တိုလွန်းပါတယ်၊ ဂဏန်း ၄ လုံးထည့်ပါ</string>
+  <string name="forgotpin_confirm_pin">လုံခြုံရေးနံပတ် ပြန်ထည့်ပါ</string>
+  <string name="forgotpin_confirm_pin_message">သေချာအောင်လို့ လုံခြုံရေးနံပတ် ပြန်ထည့်ပါ</string>
+  <string name="forgotpin_error_pin_mismatch">နဂိုနံပါတ် နဲ့ အခု နံပါတ် မတူပါ</string>
+
+  <!-- Reports -->
+  <string name="reports_come_back_later">ခဏနေမှပြန်စစ်ကြည့်ပါ</string>
+  <string name="reports_you_will_be_able_to_see">ဒီမှာ သင့်ဆေးခန်းအတွက် သွေးတိုးရောဂါသည် မှတ်တမ်းများ တွေ့မြင်နိုင်ပါပြီ။</string>
+
+  <!-- Medical History -->
+  <!--suppress UnusedResources used in enum -->
+  <string name="medicalhistory_question_heartattack">နှလုံးရောဂါ</string>
+  <!--suppress UnusedResources -->
+  <string name="medicalhistory_question_stroke">လေဖြတ်ရောဂါ</string>
+  <!--suppress UnusedResources -->
+  <string name="medicalhistory_question_kidney">ကျောက်ကပ်ရောဂါ</string>
+  <!--suppress UnusedResources -->
+  <string name="medicalhistory_diagnosis_hypertension">သွေးတိုး</string>
+  <string name="medicalhistory_diagnosis_hypertension_required">သွေးတိုး စစ်ဆေးချက် (လိုအပ်သည်)</string>
+  <!--suppress UnusedResources -->
+  <string name="medicalhistory_diagnosis_diabetes">သွေးချို</string>
+  <string name="medicalhistory_diagnosis_diabetes_required">သွေးချို စစ်ဆေးချက် (လိုအပ်သည်)</string>
+  <string name="newmedicalhistory_next">နောက်တစ်ခု</string>
+  <string name="newmedicalhistory_yes">ရှိ</string>
+  <string name="newmedicalhistory_no">မရှိ</string>
+  <string name="newmedicalhistory_history">ရှေးဖြစ်စဥ်များ</string>
+  <string name="newmedicalhistory_diagnosis">ဆေးစစ်တမ်း (လိုအပ်သည်)</string>
+  <string name="medicalhistory_question_is_on_hypertension_treatment">လူနာ နောက်ဆုံးလမှာ အချိန်မရွေး သွေးတိုးဆေးများ သောက်ပါသလား? (လိုအပ်သည်)</string>
+  <string name="medicalhistory_question_is_on_diabetes_treatment">လူနာ နောက်ဆုံးလမှာ အချိန်မရွေး သွေးချိုဆေးများ သောက်ပါသလား?(လိုအပ်သည်)</string>
+
+  <!--Prescribed Drug with Dosages Sheet-->
+  <string name="prescribed_drugs_dosage_none">မရှိပါ</string>
+  <string name="prescribed_drugs_dosage_remove">ပယ်ဖျက်မည်</string>
+  <string name="prescribed_drug_with_dosages_sheet_drug_name">%s ဆေးသောက်ကြိမ်</string>
+
+  <!--Scan Simple ID-->
+  <string name="scansimpleid_title">သွေးပေါင်ချိန်တိုင်းမှတ်ပုံတင်</string>
+  <string name="scansimpleid_hint_short_code" translatable="false">123 4567</string>
+  <string name="scansimpleid_enteredcode_error_empty">သွေးပေါင်ချိန်တိုင်းမှတ်ပုံတင် နံပါတ် ရိုက်ထည့်ပါ</string>
+  <string name="scansimpleid_enteredcode_error_not_required_length">မှန်ကန်သည့် သွေးတိုင်းမှတ်ပုံတင် ရိုက်ထည့်ပါ</string>
+  <string name="scansimpleid_type_number">ဒါမှမဟုတ် နံပါတ်ရိုက်ထည့်ပါ</string>
+  <string name="scansimpleid_invalid_qr_code">သတ်မှတ်ထားသည့်ကျန်းမာရေးကဒ်ကို ဖုန်းနဲ့ ဖတ်မည်</string>
+  <string name="scansimpleid_bp_passport_or_national_health_id">သွေးပေါင်ချိန်တိုင်းမှတ်ပုံတင် </string>
+
+  <!--- Sync Indicator-->
+  <string name="syncindicator_status_pending">ဒေတာပို့ခြင်း ဆိုင်းငံ့နေသည်</string>
+  <string name="syncindicator_status_failed">ဒေတာပို့ခြင်း မအောင်မြင်ပါ</string>
+  <string name="syncindicator_status_syncing">ဆာဗာကို ဒေတာပို့နေသည်</string>
+  <string name="syncindicator_status_synced_just_now">ဆာဗာကို ဒေတာရောက်ပါပြီ</string>
+  <string name="syncindicator_status_synced_min_ago">ဆာဗာကိုဒေတာသွင်းပြီးတာ %s မိနစ်ရှိပါပြီ</string>
+  <string name="syncindicator_dialog_error_network">လူနာမှတ်တမ်း ဆာဗာကို ပို့ရန်အတွက် ကောင်းမွန်တဲ့ အင်တာနက် ကွန်ရက်ကို ချိတ်ဆက်ပေးပါ</string>
+  <string name="syncindicator_dialog_button_text">အိုကေ</string>
+  <string name="syncindicator_dialog_error_server">လတ်တလော ဆာဗာ ကျနေပါသည်။ နောက်မှ ပြန်လည်ကြိုးစားကြည့်ပါ</string>
+
+  <!-- Help Screen -->
+  <string name="help_title">ကူညီရန်</string>
+  <string name="help_no_connection">အင်တာနက် မရပါ</string>
+  <string name="help_something_went_wrong">တခုခုမှားယွင်းနေပါတယ်</string>
+  <string name="help_try_again">ပြန်လုပ်ဆောင်ပါ</string>
+
+  <!-- Link Id Sheet-->
+  <string name="linkidwithpatient_button_yes">လုပ်မယ်</string>
+  <string name="linkidwithpatient_button_back">နောက်ပြန်သွား</string>
+  <string name="linkidwithpatient_text">အိုင်ဒီကို ထည့်ပါ</string>
+  <string name="linkidwithpatient_patient_text">%1$s?</string>
+
+  <!-- Add ID to Patient: Search -->
+
+  <!-- Recent Patients -->
+  <string name="recent_patients_toolbar_title">မကြာမှီက</string>
+
+  <!-- Recent Patients Item View -->
+  <string name="recent_patients_itemview_last_seen">တွေ့ဆုံပြီး:\u0020</string>
+  <string name="recent_patients_itemview_new_registration">စာရင်းအသစ်သွင်းမည်</string>
+
+  <!-- Add ID to Patient: Search Results-->
+
+  <!-- App update : Dialog -->
+  <string name="appupdatedialog_title">ဗားရှင်းမြှင့်မည်</string>
+  <string name="appupdatedialog_body">Google Play မှာ Simple App ရဲ့ နောက်ဆုံး ဗားရှင်း ရယူနိုင်တယ်.</string>
+  <string name="appupdatedialog_positive_button_text">ရယူမည်</string>
+  <string name="appupdatedialog_negative_button_text">အခုမလုပ်သေးပါ</string>
+
+  <!-- All Patients In Facility View-->
+
+  <!--Registration loader screen -->
+  <string name="registrationloader_error_unexpected_title">တခုခုမှားယွင်းနေပါတယ်</string>
+  <string name="registrationloader_error_unexpected_message">နောက်မှ ပြန်လည်ကြိုးစားကြည့်ပါ</string>
+  <string name="registrationloader_error_internet_connection_title">အင်တာနက် မရပါ</string>
+  <!--suppress UnusedResources -->
+  <string name="registrationloader_retry">ပြန်လုပ်ဆောင်ပါ</string>
+
+  <!-- Short code search -->
+
+  <!-- Simple video -->
+  <string name="simple_video_duration">%s မိနစ်များ</string>
+  <string name="simple_video_watch">ဗီဒီယိုကြည့်ပါ</string>
+  <string name="simple_video_how_to_use">app ကို ဘယ်လိုအသုံးပြုရမှလဲ</string>
+
+  <!-- Settings -->
+  <string name="settings_title">ဆက်တင်များ</string>
+  <string name="settings_user_name_icon_content">ဆက်တင် အသုံးပြုသူ အိုင်ကွန်</string>
+  <string name="settings_user_phone_icon_content">ဆက်တင် အသုံးပြုသူ ဖုန်းနံပါတ် အိုင်ကွန်</string>
+  <string name="settings_current_language_icon_content">ဆက်တင် အသုံးပြုသူ ဘာသာစကား အိုင်ကွန်</string>
+  <string name="settings_app_version_icon_content">ဆက်တင် ဗားရှင်း အိုင်ကွန်</string>
+  <string name="settings_name">နာမည်</string>
+  <string name="settings_number">ဖုန်းနံပါတ်</string>
+  <string name="settings_language">ဘာသာစကား</string>
+  <string name="settings_change">ပြောင်းမယ်</string>
+  <string name="settings_language_hint">ဘာသာစကားရွေးပါ</string>
+  <string name="settings_software">ဆော့ဖ်ဝဲ</string>
+  <string name="settings_update">ဗားရှင်းမြှင့်မည်</string>
+  <string name="settings_software_version">ဗားရှင်း %1$s</string>
+
+  <!-- Change language screen -->
+  <string name="changelanguage_title">သင့်၏ ဘာသာစကားရွေးပါ</string>
+  <string name="changelanguage_done">ပြောင်းမယ်</string>
+
+  <!-- Placeholder -->
+  <string name="placeholder_loading_title">ခဏ စောင့်ပါ…</string>
+  <string name="placeholder_loading_message">ဒေတာဘေ့စ် ပြုပြင်နေတုန်းဖြစ်ပါတယ်၊ မိနစ်ပိုင်းသာ ကြာပါတယ်ခဏလေးပါ။</string>
+
+  <!-- Select Country Screen -->
+  <string name="selectcountry_logo_contentdescription">Simple Logo</string>
+  <string name="selectcountry_next">နောက်တစ်ခု</string>
+  <string name="selectcountry_title">သင့် နိင်ငံရွေးပါ</string>
+  <string name="selectcountry_networkerror">အင်တာနက် မရှိပါ!</string>
+  <string name="selectcountry_servererror">ဆာဗာ ပြဿနာဖြစ်နေပါသည်! နောက်မှ ပြန်စမ်းကြည့်ပါ!</string>
+  <string name="selectcountry_genericerror">တစ်ခုခုမှားယွင်းနေပါသည်!  နောက်မှ ပြန်စမ်းကြည့်ပါ!</string>
+  <string name="selectcountry_retry">ပြန်လုပ်ဆောင်ပါ</string>
+  <string name="scheduleappointment_at">မှာ</string>
+  <string name="scheduleappointment_change">ပြင်မယ်</string>
+
+  <!-- BloodSugar type picker -->
+  <string name="bloodsugartype_picker_title">တိုင်းတာတစ်ခုရွေးပါ</string>
+  <string name="bloodsugartype_picker_desc">Choose ‘RBS’ if you are not sure.</string>
+  <string name="bloodsugartype_rbs">ကြိုက်သည့်အချိန်စစ်သည့် သွေးအချိုဓာတ် [Random blood sugar (RBS)]</string>
+  <string name="bloodsugartype_fbs">နံနက်စာမစားမှီ သွေးချိုဓာတ် [Fasting blood sugar (FBS)]</string>
+  <string name="bloodsugartype_ppbs">Post prandial blood sugar (PPBS)</string>
+  <string name="bloodsugartype_hba1c" translatable="false">HbA1c</string>
+
+  <!-- Blood sugar entry -->
+  <string name="bloodsugarentry_mg_dl" translatable="false">mg/dL</string>
+  <string name="bloodsugarentry_mmol_l" translatable="false">mmol/L</string>
+  <string name="bloodsugarentry_percentage" translatable="false">%</string>
+  <string name="bloodsugarentry_sheet_title_enter_date">လာရောက်သည့်နေ့</string>
+  <string name="bloodsugarentry_day">နေ့</string>
+  <string name="bloodsugarentry_month">လ</string>
+  <string name="bloodsugarentry_year">နှစ်</string>
+  <string name="bloodsugarentry_error_lower_limit">30 mg/dL ထက် မနည်းရပါ</string>
+  <string name="bloodsugarentry_error_lower_limit_hba1c">3\u0025 ထက် မနည်းရပါ</string>
+  <string name="bloodsugarentry_error_lower_limit_mmol">1.66 mmol/L ထက်မနည်းရပါ။</string>
+  <string name="bloodsugarentry_error_higher_limit">1000 mg/dL ထက် မပိုရပါ။</string>
+  <string name="bloodsugarentry_error_higher_limit_hba1c">25\u0025 ထက် မပိုရပါ။</string>
+  <string name="bloodsugarentry_error_higher_limit_mmol">55.49 mmol/L ထက်မပိုရပါ။</string>
+  <string name="bloodsugarentry_error_empty">ဖြည့်ပေးရပါမည်</string>
+  <string name="bloodsugarentry_error_date_invalid_pattern">နေ့/လ/နှစ် အတိုင်းထည့်ပေးပါ</string>
+  <string name="bloodsugarentry_error_date_is_in_future">ဒီနေ့ထက် ကြိုထည့်လို့မရပါ</string>
+  <string name="bloodsugarentry_random_title">Random blood sugar</string>
+  <string name="bloodsugarentry_post_prandial_title">Post prandial blood sugar</string>
+  <string name="bloodsugarentry_fasting_title">Fasting blood sugar</string>
+  <string name="bloodsugarentry_hba1c_title" translatable="false">HbA1c</string>
+  <string name="bloodsugarentry_remove">ပယ်ဖျက်မည်</string>
+  <string name="bloodsugarentry_edit_random_title"> random blood sugar ပြင်ရန်</string>
+  <string name="bloodsugarentry_edit_post_prandial_title">post prandial blood sugar ပြင်ရန်</string>
+  <string name="bloodsugarentry_edit_fasting_title">fasting blood sugar ပြင်ရန်</string>
+  <string name="bloodsugarentry_edit_hba1c_title">HbA1c ပြင်ရန်</string>
+  <string name="bloodsugarentry_date_change">ပြင်မယ်</string>
+
+  <!-- Confirm remove blood sugar dialog -->
+  <string name="bloodsugarentry_remove_blood_sugar_title">Blood Sugar ဖျက်မည်</string>
+  <string name="bloodsugarentry_remove_blood_sugar_message">ဒီသွေးချို တိုင်းတာကို ဖျက်မှာ သေချာပါလား?</string>
+  <string name="bloodsugarentry_remove_blood_sugar_confirm">ဖျက်ပေးပါ</string>
+  <string name="bloodsugarentry_remove_blood_sugar_cancel">မလုပ်ပါ</string>
+
+  <!-- Blood Sugar Summary view -->
+  <string name="bloodsugarsummaryview_no_blood_sugars">သွေးချိုမှတ်တမ်းထည့်သွင်းခြင်းမရှိပါ</string>
+  <string name="bloodsugarsummaryview_add_blood_sugar_button">သွေးချို</string>
+  <string name="bloodpressurehistory_blood_sugar_date_time" translatable="false">%1$s\n%2$s</string>
+
+  <string name="bloodsugar_reading_type_rbs" translatable="false">RBS</string>
+  <string name="bloodsugar_reading_type_ppbs" translatable="false">PPBS</string>
+  <string name="bloodsugar_reading_type_fbs" translatable="false">FBS</string>
+  <string name="bloodsugar_reading_type_hba1c" translatable="false">HbA1c</string>
+
+  <string name="bloodsugar_reading_unit_type_mg_dl" translatable="false">mg/dL</string>
+  <string name="bloodsugar_reading_unit_type_mmol" translatable="false">mmol/L</string>
+  <string name="bloodsugar_reading_unit_type_percentage" translatable="false">%</string>
+
+  <!-- Blood Pressure History screen -->
+  <string name="bloodpressurehistory_add_bp_button">သွေးပေါင်ချိန်</string>
+  <string name="bloodpressurehistory_bp_time_date" translatable="false">%1$s\n%2$s</string>
+  <string name="bloodpressurehistory_toolbar_title">%1$s, %2$s, %3$s</string>
+
+  <!-- Blood Sugar History screen -->
+  <string name="bloodsugarhistory_add_blood_sugar_button">သွေးချို</string>
+  <string name="bloodsugarhistory_blood_sugar_date_time" translatable="false">%1$s\n%2$s</string>
+  <string name="bloodsugarhistory_toolbar_title">%1$s, %2$s, %3$s</string>
+
+  <!-- Summary CV History view -->
+  <string name="medicalhistorysummaryview_history">မှတ်တမ်း</string>
+  <string name="medicalhistorysummaryview_diagnosis">ဆေးစစ်ချက် (လိုအပ်သည်)</string>
+
+  <!-- Summary prescriptions view -->
+  <string name="drugsummaryview_no_medicines">ဆေးဝါးထည့်သွင်းမရှိပါ</string>
+
+  <!-- Access Denied screen -->
+  <string name="accessdeniedscreen_title_access_denied">ဝင်ခွင့်မရှိပါ</string>
+  <string name="accessdeniedscreen_description">Simple App အသုံးပြုခွင့်ကို ငြင်းပယ်ထားသည်။ ၎င်းသည် အမှားအယွင်းတစ်ခုဟု ယူဆပါက သင့်ကြီးကြပ်ရေးမှူးထံ ဆက်သွယ်ပါ။\n\nသင်၏အသုံးပြုခွင့်ကို ပြန်လည်ရယူပါက Simple ကိုဖြုတ်ပြီး Play Store မှ ပြန်ထည့်သွင်းပါ။</string>
+
+  <!-- Confirm Facility change sheet -->
+  <string name="confirmfacilitychange_title">နေရာ ပြောင်းမည်</string>
+  <string name="confirmfacilitychange_negative_button">မပြောင်းပါ</string>
+  <string name="confirmfacilitychange_positive_button">ပြောင်းယ်</string>
+  <string name="confirmfacilitychange_facility_name">%s?</string>
+
+  <!-- Registration Confirm Facility Change Sheet -->
+  <string name="registrationconfirmfacility_title">အခုသင်ဘယ်ရောက်နေတာလဲ?</string>
+  <string name="registrationconfirmfacility_positive_button">ဟုတ်ပါတယ်</string>
+  <string name="registrationconfirmfacility_negative_button">မဟုတ်ပါဘူး</string>
+
+  <!-- Alert facility change -->
+  <string name="alertfacilitychange_title">သင့်အခုအဲဒီမှာ </string>
+  <string name="alertfacilitychange_yes_button">ဟုတ်ပါတယ်</string>
+  <string name="alertfacilitychange_change_button">ပြောင်းမယ်</string>
+  <string name="alertfacilitychange_facility_name">%s?</string>
+
+  <!-- Prescribed Drug Summary -->
+<!--  <string name="prescribeddrugsummary_item_name">%1$s %2$s</string>-->
+
+  <!-- Contact patient -->
+  <string name="contactpatient_agreed_to_visit">ဤလူနာမှ \"လာရောက်ရန်သဘောတူပါသည် \" ဟု မှတ်ယူသည်</string>
+  <string name="contactpatient_remind_call_later">နောက်ထပ်ဖုန်းခေါ်ရန် သတိပေးပါ…</string>
+  <string name="contactpatient_remove_from_list">ချိန်းရက်လွန် စာရင်းမှ ဖျက်ရန်…</string>
+  <string name="contactpatient_result_of_call">ဖုန်းခေါ်ပြီး ရလဒ်</string>
+  <string name="contactpatient_call_normal">ပုံမှန်</string>
+
+  <string name="contactpatient_call_secure">ပိုစိတ်ချရသောနည်းလမ်း</string>
+  <string name="contactpatient_help_text">လုံခြုံသောခေါ်ဆိုမှုများသည် သင့်နံပါတ်ကို ဖုံးကွယ်ထားပြီး ခေါ်ဆိုခအခမဲ့ဖြစ်သည်။</string>
+  <string name="contactpatient_patientdetails">%1$s, %2$s, %3$s</string>
+  <string name="contactpatient_call_later_in">နောက်မှ ခေါ်ဆိုမယ်</string>
+  <string name="contactpatient_change">ပြောင်းမယ်</string>
+  <string name="contactpatient_done">ခေါ်ဆိုပြီး</string>
+  <string name="contactpatient_result">ရလဒ်</string>
+  <plurals name="contactpatient_days">
+    <item quantity="one">%s နေ့</item>
+    <item quantity="other">%s နေ့များ</item>
+  </plurals>
+  <plurals name="contactpatient_weeks">
+    <item quantity="one">%s ပတ်</item>
+    <item quantity="other">%s ပတ်များ</item>
+  </plurals>
+  <plurals name="contactpatient_months">
+    <item quantity="one">%s လ</item>
+    <item quantity="other">%s လများ</item>
+  </plurals>
+  <string name="contactpatient_select_a_reason">အကြောင်းပြချက်ရွေးပါ</string>
+  <string name="contactpatient_patient_already_visited">လူနာလာပြီးသွားပါပြီ</string>
+  <string name="contactpatient_patient_is_not_responding">လူနာမှအကြောင်းမပြန်ပါ</string>
+  <string name="contactpatient_invalid_phone_number">ဖုန်းနံပါတ်အလုပ်မလုပ်ပါ</string>
+  <string name="contactpatient_public_hospital_transfer">တစ်ခြား ကျန်းမာရေး ဆေးခန်းကို ပြောင်းသွားပါပြီ</string>
+  <string name="contactpatient_moved_to_private">သီးသန့် ဆရာဝန်နဲ့ ဆက်ပြပါသည်</string>
+  <string name="contactpatient_patient_died">ကွယ်လွန်သွားသည်</string>
+  <string name="contactpatient_other_reason">အခြား အကြောင်းပြချက်များ</string>
+  <string name="contactpatient_patient_registered_at">စာရင်းသွင်းထားသည်</string>
+  <string name="contactpatient_patient_transfer_from">လွှဲပြောင်းလာသည်</string>
+  <string name="contactpatient_phone">ဖုန်း</string>
+  <string name="contactpatient_dx">Dx</string>
+  <string name="contactpatient_visited">လာရောက်ပြီး</string>
+  <string name="contactpatient_no_phone_number">ဖုန်းနံပါတ်မရှိပါ</string>
+  <string name="contactpatient_diagnosis_diabetes">သွေးချို</string>
+  <string name="contactpatient_diagnosis_hypertension">သွေးတိုး</string>
+  <string name="contactpatient_diagnosis_none">မရှိပါ</string>
+
+  <!-- Deep link -->
+  <string name="deeplink_patient_profile_not_found">လူနာprofile ရှာမတွေ့ပါ</string>
+  <string name="deeplink_patient_profile_not_found_desc">အင်တာနက်တစ်ချက်ပြန်စစ်ပြီး လူနာဒေတာများ ဆာဗာ မှ ရယူပါ</string>
+  <string name="deeplink_patient_profile_not_found_positive_action">အိုကေ</string>
+  <string name="deeplink_no_patient">လူနာ မတွေ့ပါ</string>
+  <string name="deeplink_no_patient_desc">တယ်လီတိုင်ပင်ဆွေးနွေးခြင်းကို စတင်ပြီး လူနာအချက်အလက်များအတွက် ကျန်းမာရေးဝန်ထမ်းကို မေးမြန်းပါ။</string>
+  <string name="deeplink_no_patient_positive_action">အိုကေ</string>
+
+  <!-- Delete patient -->
+  <string name="deletepatient_select_a_reason">အကြောင်းပြချက်ရွေးပါ</string>
+  <string name="deletereason_duplicate_patient">မှတ်ပုံတင်ပြီး စာရင်းထပ်သည့်လူနာဖြစ်သည်</string>
+  <string name="deletereason_accidental_registration">လူနာစာရင်း မှားသွင်းမိလို့ပါ</string>
+  <string name="deletereason_died">ကွယ်လွန်</string>
+  <string name="deletereason_confirm_title">ဒီလူနာကို စာရင်းမှဖျက်ရန်?</string>
+  <string name="deletereason_confirm_message"> %1$s ဒါကို ဖယ်ရှားမယ်</string>
+  <string name="deletereason_confirm_positive">ဖျက်ပါ</string>
+  <string name="deletereason_confirm_negative">မလုပ်ဆောင်ပါ</string>
+
+  <!-- Splash screen -->
+  <string name="screensplash_next">နောက်တစ်ခု</string>
+
+  <!-- Contact doctor sheet -->
+  <string name="contactdoctor_new_title">အားလပ်သည့် ဆရာဝန်</string>
+  <string name="contactdoctor_new_subtitle">ဖြစ်နိုင်ရင် WhatsApp ကိုသုံးပါ။</string>
+
+  <!-- Intro Video Screen -->
+  <string name="screenintrovideo_how_to_use_simple_app">Simple app အသုံးပြုနည်း</string>
+  <string name="screenintrovideo_watch_video">Video ကြည့်ပါ။</string>
+  <string name="screenintrovideo_skip">ကျော်သွားပါ။</string>
+
+  <!-- Assigned Facility -->
+  <string name="assigned_facility_view_title">ပြသသည့် နေရာ</string>
+  <string name="assigned_facility_view_change">ပြင်မယ်</string>
+
+  <!-- Facility Picker -->
+  <string name="facilitypicker_search_hint">နေရာနာမည်ရိုက်ထည့်ပါ</string>
+  <string name="facilitypicker_facility_address_without_street" translatable="false">%s, %s</string>   <!-- District, State -->
+  <string name="facilitypicker_facility_address_with_street" translatable="false">%s, %s, %s</string>  <!-- Street, District, State -->
+  <string name="facilitypicker_header_suggested_facilities">အကြံပြုထားသော ဆေးခန်းများ</string>
+  <string name="facilitypicker_header_all_facilities">ဆေးခန်းများအားလုံး</string>
+
+  <!--  TeleMedicine User Signature-->
+  <string name="screen_signature_sign_in_this_box">ဤအကွက်တွင် လက်မှတ်ထိုးပါ။</string>
+
+  <!-- Drug Duration -->
+  <string name="drug_duration_title">%1$s %2$s</string>
+  <string name="drugDurationLabel">နေ့များ</string>
+  <string name="drug_duration_empty_error">ဆေးကြာချိန်ကို မထည့်လို့မရပါ</string>
+  <string name="drug_duration_max_error">ဆေးကြာချိန်ကို %1$s ရက်ထက် မပိုရပါ</string>
+
+  <!-- Teleconsultation success-->
+  <string name="screen_teleconsult_success_add_prescription">ဆေးစာထည့်မည်?</string>
+  <string name="screen_teleconsult_success_yes">ထည့်ပါ</string>
+  <string name="screen_teleconsult_success_no">မထည့်ပါ</string>
+  <string name="screen_teleconsult_success_teleconsult_recorded">Teleconsult မှတ်တမ်းတင်ထားသည်။</string>
+  <string name="screen_teleconsult_success_patient_information">%1$s, %2$s, %3$s</string>
+  <string name="sheet_medicine_frequency_od">OD</string>
+  <string name="sheet_medicine_frequency_bd">BD</string>
+  <string name="sheet_medicine_frequency_tds">TDS</string>
+  <string name="sheet_medicine_frequency_qds">QDS</string>
+  <string name="sheet_medicine_frequency_save">သိမ်းဆည်းပါ။</string>
+
+  <!-- Teleconsult Record Screen -->
+  <string name="screen_teleconsult_record">Teleconsult မှတ်တမ်း</string>
+  <string name="screen_teleconsult_record_type">Teleconsultation အမျိုးအစား</string>
+  <string name="screen_teleconsult_record_type_audio">အသံခေါ်ဆိုမှု</string>
+  <string name="screen_teleconsult_record_type_video">ဗီဒီယိုခေါ်ဆိုမှု</string>
+  <string name="screen_teleconsult_record_type_message">မက်ဆေ့ချ်</string>
+  <string name="screen_teleconsult_record_patient_took_medicine">သွေးတိုးရောဂါနှင့် သွေးချိုရောဂါတိုက်ဖျက်ရေးဆေးများကို လူနာ ပုံမှန်သောက်နေပါသည်။</string>
+  <string name="screen_teleconsult_record_patient_consented">လူနာအား တယ်လီဖုန်းဖြင့် တိုင်ပင်ဆွေးနွေးရန် သဘောတူညီခဲ့သည်။ </string>
+  <string name="screen_teleconsult_record_done">ပြီးပြီ။</string>
+  <string name="screen_teleconsult_record_patient_details" translatable="false">%1$s, %2$s, %3$s</string>
+  <string name="teleconsultnotrecordeddialog_title">Teleconsult မှတ်တမ်းမတင်ပါ။</string>
+  <string name="teleconsultnotrecordeddialog_body">ပယ်ဖျက်လိုသည်မှာ သေချာပါသလား။</string>
+  <string name="teleconsultnotrecordeddialog_positive_button_text">ဟုတ်ကဲ့</string>
+  <string name="teleconsultnotrecordeddialog_negative_button_text">မလုပ်ပါ</string>
+
+  <!-- Deeplink Teleconsult not authorised-->
+  <string name="deeplink_medical_officer_not_authorised_to_log_teleconsult">တယ်လီကွန်းအတိုင်ပင်ခံကို စာရင်းသွင်းရန် သင့်အား ခွင့်မပြုပါ။</string>
+  <string name="deeplink_please_check_with_your_supervisor">သင့်ကြီးကြပ်ရေးမှူးနှင့် စစ်ဆေးပါ။</string>
+  <string name="deeplink_okay_positive_action">ဟုတ်ပြီ</string>
+
+  <!-- Teleconsult Prescription Screen -->
+  <string name="screen_teleconsult_prescription_patient_details" translatable="false">%1$s, %2$s, %3$s</string>
+  <string name="screen_teleconsult_prescription_next">နောက်တစ်ခု</string>
+
+  <!-- Teleconsult Patient Info View -->
+  <string name="view_teleconsult_patient_info" translatable="false">%1$s, %2$s, %3$s</string>
+
+  <!-- Teleconsult Medicines View -->
+  <string name="view_teleconsult_medicines">ဆေးဝါးများ</string>
+  <string name="view_teleconsult_medicines_add">ထည့်မည်</string>
+  <string name="view_teleconsult_medicines_edit">ပြင်မည်</string>
+  <string name="view_teleconsult_medicines_required_error">အနည်းဆုံး ဆေးတစ်ခု ထည့်ပါ</string>
+  <string name="list_item_teleconsult_medicines_name" translatable="false">%1$s %2$s</string>
+  <plurals name="list_item_teleconsult_medicine_duration">
+    <item quantity="one">%1$s နေ့</item>
+    <item quantity="other">%1$s နေ့များ</item>
+  </plurals>
+
+  <!-- Teleconsult Doctor Info View -->
+  <string name="view_teleconsult_doctor_info_instructions">လူနာအတွက် ညွှန်ကြားချက်များ</string>
+  <string name="view_teleconsult_doctor_info_registration_id">ကျန်းမာရေ စာရင်း နံပါတ်</string>
+  <string name="view_teleconsult_doctor_info_acknowledgement">ဤဆေးညွှန်းကို လက်မှတ်ရေးထိုးခြင်းဖြင့် ကျွန်ုပ်သည်  %1$s ဖြစ်ကြောင်း အသိအမှတ်ပြုပါသည်။</string>
+  <string name="view_teleconsult_doctor_info_add_signature">လက်မှတ်ထည့်ပါ</string>
+  <string name="view_teleconsult_doctor_info_signature_error">လက်မှတ်ထည့်ပါ</string>
+
+  <!-- Teleconsult share prescription screen -->
+  <string name="screen_teleconsult_share_prescription_teleconsult_prescription" translatable="false">Teleconsult ဆေးစာ</string>
+  <string name="screen_teleconsult_share_prescription_medicines" translatable="false">ဆေးဝါးများ</string>
+  <string name="screen_teleconsult_share_prescription_instructions" translatable="false">ညွှန်ကြားချက်များ</string>
+  <string name="screen_teleconsult_share_prescription_download">ဒေါင်းလုပ်ဒ်ယူမည်</string>
+  <string name="screen_teleconsult_share_prescription_share">မျှဝေမည်</string>
+  <string name="screen_teleconsult_share_prescription_done">လုပ်ဆောင်ပြီး</string>
+  <string name="screen_teleconsult_share_prescription_patient_details" translatable="false">%1$s, %2$s, %3$s</string>
+  <string name="screen_teleconsult_share_prescription_medical_registration_id" translatable="false">ကျန်းမာရေး စာရင်း နံပါတ်: %1$s</string>
+  <string name="list_item_teleconsult_share_prescription_medicines_icon" translatable="false">💊</string>
+  <string name="list_item_teleconsult_share_prescription_medicines_name" translatable="false">%1$s %2$s, %3$s, %4$s days</string>
+  <string name="screen_teleconsult_share_prescription_image_using">Share image using</string>
+  <string name="screen_teleconsult_share_prescription_title">ဆေးစာ</string>
+  <string name="screen_teleconsult_share_prescription_instructions_empty" translatable="false">-</string>
+  <string name="screen_teleconsult_share_prescription_image_saved">ဆေးစာကို ဒေါင်းလုဒ်များတွင် သိမ်းဆည်းထားသည်။ </string>
+
+  <!-- Select diagnosis error alert dialog -->
+  <string name="select_diagnosis_error_diagnosis_required">ဆေးစစ်များလိုအပ်ပါ သည်</string>
+  <string name="select_diagnosis_error_enter_diagnosis_both_hypertension_diabetes">သွေးတိုးရောဂါနှင့် သွေးချိုရောဂါ နှစ်မျိုးစလုံးအတွက် ရောဂါလက္ခဏာကို ရွေးချယ်ပါ။</string>
+  <string name="select_diagnosis_error_enter_diagnosis_hypertension">သွေးတိုးရောဂါအတွက် ရောဂါလက္ခဏာကို ရွေးချယ်ပါ။</string>
+  <string name="select_diagnosis_error_ok">အိုကေ</string>
+  <string name="sheet_teleconsult_status_title">Tele-consult ပြီးပြီလား။</string>
+  <string name="sheet_teleconsult_status_yes">ဟုတ်ကဲ့</string>
+  <string name="sheet_teleconsult_status_no">မပြီးသေးပါ</string>
+  <string name="sheet_teleconsult_status_waiting">စောင့်နေတုန်းပဲ။</string>
+  <string name="sheet_teleconsult_status_done">ပြီးပြီ။</string>
+
+  <!-- Setup activity -->
+  <string name="setup_cannot_run">ဖွင့်လို့မရပါ</string>
+  <string name="setup_rooted">ROOT လုပ်ထားတဲ့ စက်မှာ ဖွင့်လို့မရပါ</string>
+  <string name="setup_close">ပိတ်မယ်</string>
+
+  <!-- Blood sugar unit selection dialog -->
+  <string name="blood_sugar_unit_selection_choose">ရွေးပါ</string>
+  <string name="blood_sugar_unit_selection_done">ရွေးပြီး</string>
+
+  <!-- BP passport sheet -->
+  <string name="sheet_bp_passport_register_new_patient">လူနာအသစ် စာရင်းသွင်းမယ်</string>
+  <string name="sheet_bp_passport_add_to_existing_patient">ရှိပြီးသား လူနာမှာ ထည့်မည်</string>
+  <string name="sheet_bp_passport_number">သွေးတိုင်းမှတ်ပုံတင် %1$s</string>
+  <string name="sheet_national_health_id">နိုင်ငံသားကျန်းမာရေး နံပတ် %1$s</string>
+
+  <!-- Instant search -->
+  <string name="patientinstantsearch_assigned_facility_header">%1$s မှာ တာဝန်ပေးထားသည်။</string>
+  <string name="patientinstantsearch_nearby_facilities_header">နီးစပ်ရာ ကျန်းမာရေး နေရာများ</string>
+  <string name="patientsearch_error_no_patients_in_facility">ဒီမှာ သင့်ရဲ့ ကျန်းမာရေး နေရာမှ စာရင်းသွင်းထားတဲ့ လူများအားလုံးကို မြင်တွေ့နိုင်ပါလိမ့်မယ်</string>
+  <string name="patientsearch_error_no_search_results">ကိုက်ညီသည့် လူနာ ရှာမတွေ့ပါ</string>
+  <string name="patientsearch_error_no_patients_in_facility_heading"> %1$s ထဲမှာလူနာမရှိပါ</string>
+
+  <!-- Text Input DatePicker sheet -->
+  <string name="sheet_text_input_date_picker_enter_a_date">နေ့တစ်ခု ထည့်ပါ</string>
+  <string name="sheet_text_input_date_picker_day">နေ့</string>
+  <string name="sheet_text_input_date_picker_month">လ</string>
+  <string name="sheet_text_input_date_picker_year">နှစ်</string>
+  <string name="sheet_text_input_date_picker_enter_valid_date">နေ့/လ/နှစ် အတိုင်းထည့်ပေးပါ</string>
+  <string name="sheet_text_input_date_picker_date_cannot_be_in_past">နေ့ရက်ကြို သတ်မှတ်ပါ</string>
+  <string name="sheet_text_input_date_picker_date_cannot_be_after_one_year">နေ့မှာ တစ်နှစ်ကျော် မရပါ</string>
+
+  <!-- National Health Id -->
+  <string name="nhid_error_cannot_assign_to_patient_with_existing_id_message">အမျိုးသားကျန်းမာရေးID ရှိပြီးသား လူနာ ကို နောက်ထပ် အမျိုးသားကျန်းမာရေးID ပေးလို့မရပါ</string>
+  <string name="nhid_error_cannot_assign_to_patient_with_existing_ok">အိုကေ</string>
+
+  <!-- Select ongoing hypertension treatment dialog -->
+  <string name="select_ongoing_hypertension_treatment_title">ဖြည့်ဖို့လိုအပ်ပါတယ်</string>
+  <string name="select_ongoing_hypertension_treatment_message">ပြီးခဲ့တဲ့လမှာ ဘယ်ချိန်ဖြစ်ဖြစ် သွေးတိုးဆေးများ သောက်ခဲ့ပါသလား အတည်ပြုပါ။</string>
+  <string name="select_ongoing_diabetes_treatment_message">ပြီးခဲ့တဲ့လမှာ ဘယ်ချိန်ဖြစ်ဖြစ် သွေးချိုဆေးများ သောက်ခဲ့ပါသလား အတည်ပြုပါ။</string>
+  <string name="select_ongoing_hypertension_treatment_positive_action">အိုကေ</string>
+
+  <!-- Custom drugs search -->
+  <string name="customdrugssearch_hint">ဆေးနာမည်ရိုက်ထည့်ရှာပါ</string>
+  <string name="customdrugssearch_item_name_separator">,\u0020</string>
+
+  <!-- Warning dialogs -->
+  <string name="warning_add_measurements_title">သွေးတိုးနဲ့ သွေးချို တိုင်းတာ ထည့်မယ်?</string>
+  <string name="warning_add_measurements_message">ဖြစ်နိုင်ရင် လူနာအတွက် လက်ရှိ သွေးတိုး သွေးချို တိုင်းထားတာကို ထည့်ပေးပါ</string>
+  <string name="warning_add_measurements_positive_button">တိုင်းတာတွေ ထည့်မယ်</string>
+  <string name="warning_add_measurements_negative_button">အခုမလုပ်သေးပါ</string>
+  <string name="warning_add_blood_pressure_title">သွေးတိုင်းထည့်မလား?</string>
+  <string name="warning_add_blood_pressure_message">ဖြစ်နိုင်ရင် လူနာအတွက် လက်ရှိ သွေးတိုး တိုင်းထားတာကို ထည့်ပေးပါ</string>
+  <string name="warning_add_blood_pressure_positive_button">သွေးပေါင်ချိန်တိုင်းတာ ထည့်မည်</string>
+  <string name="warning_add_blood_pressure_negative_button">အခုမလုပ်သေးပါ</string>
+  <string name="warning_add_blood_sugar_title">သွေးချိုတိုင်းထည့်မလား?</string>
+  <string name="warning_add_blood_sugar_message">ဖြစ်နိုင်ရင် လူနာအတွက် လက်ရှိ သွေးချို တိုင်းထားတာကို ထည့်ပေးပါ</string>
+  <string name="warning_add_blood_sugar_positive_button">သွေးချိုတိုင်းတာ ထည့်မည်</string>
+  <string name="warning_add_blood_sugar_negative_button">အခုမလုပ်သေးပါ</string>
+
+  <!-- Custom drug entry sheet -->
+  <string name="custom_drug_entry_sheet_remove">ဖျက်ပါ</string>
+  <string name="custom_drug_entry_sheet_dosage">ဆေးသောက်ချိန်</string>
+  <string name="custom_drug_entry_sheet_frequency">ကြိမ်နှုန်း</string>
+  <string name="custom_drug_entry_sheet_dosage_placeholder" translatable="false">mg</string>
+  <string name="custom_drug_entry_sheet_save_button_text">သွင်းယူပါ</string>
+  <string name="custom_drug_entry_sheet_add_button_text">ထည့်ပါ</string>
+  <string name="custom_drug_entry_sheet_frequency_none" translatable="false">မရှိပါ</string>
+  <string name="custom_drug_entry_sheet_frequency_dialog_done">ပြီးပါပြီ</string>
+  <string name="custom_drug_entry_sheet_frequency_OD" translatable="false">OD</string>
+  <string name="custom_drug_entry_sheet_frequency_BD" translatable="false">BD</string>
+  <string name="custom_drug_entry_sheet_frequency_QDS" translatable="false">QDS</string>
+  <string name="custom_drug_entry_sheet_frequency_TDS" translatable="false">TDS</string>
+  <string name="custom_drug_entry_sheet_frequency_ethiopia_PD" translatable="false">PD</string>
+  <string name="custom_drug_entry_sheet_frequency_ethiopia_BID" translatable="false">BID</string>
+  <string name="custom_drug_entry_sheet_frequency_ethiopia_QID" translatable="false">QID</string>
+  <string name="custom_drug_entry_sheet_frequency_ethiopia_TID" translatable="false">TID</string>
+
+  <!-- Select state screen -->
+  <string name="select_state_title">သင့်ဆေးခန်း ဘယ်မှာလဲ?</string>
+  <string name="select_state_networkerror">အင်တာနက် ကွန်နက်ရှင် မရပါ!</string>
+  <string name="select_state_servererror">ဆောဗာ ချို့ယွင်းနေပါသည်! နောက်တော့မှ ပြန် စမ်းသုံးပါ!</string>
+  <string name="select_state_genericerror">တစ်ခုခုမှားယွင်းနေပါသည်! နောက်တော့မှ ပြန် စမ်းသုံးပါ!</string>
+
+  <!-- Patient status view -->
+  <string name="patient_status_died">သေဆုံး</string>
+
+  <!-- Change diagnosis error dialog -->
+  <string name="change_diagnosis_title">ဆေးစစ်ချက်ပြင်မလား?</string>
+  <string name="change_diagnosis_message">အကယ်၍လူနာမှာ သွေးတိုးနဲ့ သွေးချို ရှိဖူးရင် YES ကို ရွေးပါ။</string>
+  <string name="change_diagnosis_positive">ပြုပြင်ပါ</string>
+  <string name="change_diagnosis_negative">အခုမဟုတ်သေးပါ</string>
+
+
+
+</resources>

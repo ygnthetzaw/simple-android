@@ -53,11 +53,11 @@ class SelectedCountryPersistenceAndroidTest {
         .commit()
 
     val expectedSavedCountry = TestData.country(
-        isoCountryCode = "IN",
-        deploymentEndPoint = "https://in.simple.org/",
+        isoCountryCode = "MM",
+        deploymentEndPoint = "https://simple.innosoftmm.com/api",
         deploymentName = "IHCI",
-        displayName = "India",
-        isdCode = "91"
+        displayName = "Myanmar",
+        isdCode = "95"
     )
     assertThat(selectedCountryPreference.get())
         .isEqualTo(Optional.of(expectedSavedCountry))

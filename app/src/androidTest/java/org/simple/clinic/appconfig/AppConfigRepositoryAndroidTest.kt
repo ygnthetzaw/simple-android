@@ -90,8 +90,8 @@ class AppConfigRepositoryAndroidTest {
   fun fetching_states_for_selected_country_should_work_correctly() {
     // given
     val country = TestData.country(
-        displayName = "India",
-        deploymentEndPoint = "https://api.simple.org/api/"
+        displayName = "Myanmar",
+        deploymentEndPoint = "https://simple.innosoftmm.com/api/"
     )
 
     appConfigRepository.saveCurrentCountry(country)
