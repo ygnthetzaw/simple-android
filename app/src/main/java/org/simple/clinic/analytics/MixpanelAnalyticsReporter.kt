@@ -19,12 +19,14 @@ class MixpanelAnalyticsReporter(app: ClinicApp) : AnalyticsReporter {
       }
 
       mixpanel.identify(userId)
+
+      // The current facility, deployment, etc are being tracked in `MixpanelInfrastructure`
       with(mixpanel.people) {
         identify(userId)
+        set("id", userId)
         set("name", user.name)
       }
     }
-
   }
 
   override fun resetUser() {

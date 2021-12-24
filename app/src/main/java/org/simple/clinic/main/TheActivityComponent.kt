@@ -22,7 +22,7 @@ import org.simple.clinic.drugs.selection.custom.CustomDrugEntrySheet
 import org.simple.clinic.drugs.selection.custom.drugfrequency.SelectDrugFrequencyDialog
 import org.simple.clinic.editpatient.ConfirmDiscardChangesDialog
 import org.simple.clinic.editpatient.EditPatientScreen
-import org.simple.clinic.editpatient.deletepatient.DeletePatientScreenInjector
+import org.simple.clinic.editpatient.deletepatient.DeletePatientScreen
 import org.simple.clinic.enterotp.EnterOtpScreen
 import org.simple.clinic.facility.alertchange.AlertFacilityChangeSheet
 import org.simple.clinic.facility.change.FacilityChangeScreen
@@ -42,13 +42,14 @@ import org.simple.clinic.login.applock.ConfirmResetPinDialog
 import org.simple.clinic.medicalhistory.newentry.NewMedicalHistoryScreen
 import org.simple.clinic.navigation.di.FragmentScreenKeyModule
 import org.simple.clinic.navigation.v2.Router
+import org.simple.clinic.navigation.v2.ScreenResultBus
 import org.simple.clinic.newentry.PatientEntryScreen
 import org.simple.clinic.newentry.country.di.InputFieldsFactoryModule
+import org.simple.clinic.onboarding.OnboardingScreen
+import org.simple.clinic.overdue.download.formatdialog.SelectOverdueDownloadFormatDialog
 import org.simple.clinic.recentpatient.RecentPatientsScreen
 import org.simple.clinic.recentpatientsview.RecentPatientsView
 import org.simple.clinic.removeoverdueappointment.RemoveOverdueAppointmentScreen
-import org.simple.clinic.navigation.v2.ScreenResultBus
-import org.simple.clinic.onboarding.OnboardingScreen
 import org.simple.clinic.scanid.ScanSimpleIdScreen
 import org.simple.clinic.scanid.scannedqrcode.ScannedQrCodeSheet
 import org.simple.clinic.scheduleappointment.ScheduleAppointmentSheet
@@ -89,7 +90,6 @@ interface TheActivityComponent :
     AccessDeniedScreenInjector,
     PinEntryCardView.Injector,
     EnterOtpScreen.Injector,
-    DeletePatientScreenInjector,
     PatientsTabScreen.Injector,
     HelpScreen.Injector,
     ReportsScreen.Injector,
@@ -139,7 +139,9 @@ interface TheActivityComponent :
     SyncIndicatorView.Injector,
     CustomDrugEntrySheet.Injector,
     SelectDrugFrequencyDialog.Injector,
-    FacilitySelectionScreen.Injector {
+    FacilitySelectionScreen.Injector,
+    SelectOverdueDownloadFormatDialog.Injector,
+    DeletePatientScreen.Injector {
   fun inject(target: TheActivity)
 
   @Subcomponent.Factory

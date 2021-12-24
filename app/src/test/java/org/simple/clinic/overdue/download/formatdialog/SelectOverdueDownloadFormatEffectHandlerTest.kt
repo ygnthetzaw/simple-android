@@ -12,8 +12,9 @@ import org.junit.After
 import org.junit.Test
 import org.simple.clinic.mobius.EffectHandlerTestCase
 import org.simple.clinic.overdue.download.OverdueDownloadScheduler
-import org.simple.clinic.overdue.download.OverdueListDownloadFormat
+import org.simple.clinic.overdue.download.OverdueListDownloadResult.DownloadSuccessful
 import org.simple.clinic.overdue.download.OverdueListDownloader
+import org.simple.clinic.overdue.download.OverdueListFileFormat
 import org.simple.clinic.util.scheduler.TestSchedulersProvider
 
 class SelectOverdueDownloadFormatEffectHandlerTest {
@@ -39,35 +40,38 @@ class SelectOverdueDownloadFormatEffectHandlerTest {
   @Test
   fun `when download for share effect is received, then download the file`() {
     // given
-    val format = OverdueListDownloadFormat.CSV
+    val format = OverdueListFileFormat.CSV
 
-    whenever(overdueListDownloader.download(format)) doReturn Single.just(downloadedUri)
+    whenever(overdueListDownloader.downloadForShare(format)) doReturn Single.just(DownloadSuccessful(downloadedUri))
 
     // when
     testCase.dispatch(DownloadForShare(format))
 
     // then
-    testCase.assertOutgoingEvents(FileDownloadedForSharing(downloadedUri))
+    testCase.assertOutgoingEvents(FileDownloadedForSharing(DownloadSuccessful(downloadedUri)))
 
     verifyZeroInteractions(uiActions)
   }
 
   @Test
   fun `when share downloaded file effect is received, then share the downloaded file`() {
+    // given
+    val mimeType = "text/csv"
+
     // when
-    testCase.dispatch(ShareDownloadedFile(downloadedUri))
+    testCase.dispatch(ShareDownloadedFile(downloadedUri, mimeType))
 
     // then
     testCase.assertNoOutgoingEvents()
 
-    verify(uiActions).shareDownloadedFile(downloadedUri)
+    verify(uiActions).shareDownloadedFile(downloadedUri, mimeType)
     verifyNoMoreInteractions(uiActions)
   }
 
   @Test
   fun `when schedule download effect is received, then schedule the overdue list download`() {
     // given
-    val format = OverdueListDownloadFormat.PDF
+    val format = OverdueListFileFormat.PDF
 
     // when
     testCase.dispatch(ScheduleDownload(format))
@@ -87,6 +91,30 @@ class SelectOverdueDownloadFormatEffectHandlerTest {
     testCase.assertNoOutgoingEvents()
 
     verify(uiActions).dismiss()
+    verifyNoMoreInteractions(uiActions)
+  }
+
+  @Test
+  fun `when open not enough storage error dialog effect is received, then open not enough storage error dialog`() {
+    // when
+    testCase.dispatch(OpenNotEnoughStorageErrorDialog)
+
+    // then
+    testCase.assertNoOutgoingEvents()
+
+    verify(uiActions).openNotEnoughStorageErrorDialog()
+    verifyNoMoreInteractions(uiActions)
+  }
+
+  @Test
+  fun `when open download failed error dialog effect is received, then open download failed error dialog`() {
+    // when
+    testCase.dispatch(OpenDownloadFailedErrorDialog)
+
+    // then
+    testCase.assertNoOutgoingEvents()
+
+    verify(uiActions).openDownloadFailedErrorDialog()
     verifyNoMoreInteractions(uiActions)
   }
 }

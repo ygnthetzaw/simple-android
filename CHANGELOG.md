@@ -4,10 +4,44 @@
 
 ### Internal
 
+- Inject a new `AppDatabase` in instrumented tests instead of using a singleton instance
+
+## On Demo
+
+### Internal
+
+- Remove duplicate included modules in `AppModule`
+- Use hardcoded user in server integration tests
+- Add support to set custom animations for `Router` transactions
+- Migrate `DeletePatientScreen` to a fragment
+- Migrate `TeleconsultPrescriptionScreen` to a fragment
+- Report `StringIndexOutOfBoundsException` when building identifier display value
+- Migrate `HelpScreen` to a Fragment
+- Use `StringPreferenceConverter` for getting selected state from preferences
+- Use view render to setup UI and fill fields in edit screen
+- Remove unused properties from `SetupActivityModel`
+- Fix text change events not triggering in edit patient screen
+- Add support for running Heroku cleanup instance manually
+- Migrate `EditMedicineScreen` to use view effects
+- Migrate `OverdueScreen` to use view effects
+
+### Fixes
+
+- Fix app crashing when changing facility while app is not connected to network
+
+## 2021-12-08-8060
+
+### Fixes
+
+- Fix Sri Lanka personal health number not rendering in the patient entry and edit screens
+
+## 2021-12-06-8056
+
+### Internal
+
 - Ask storage permission when download/share button is clicked
 - Add common download function for downloading overdue list
 - Fix flaky paging test cases
-- Bump Mixpanel to v5.9.5
 - Remove post delayed callbacks when view is detached from window
 - Remove canceling previously scheduled periodic work in `SyncScheduler`
 - Change SQL performance reporting to use begin and end hooks
@@ -16,12 +50,37 @@
 - Send performance monitoring events to Datadog
 - Bump Mobius to v1.5.6
 - Enable overdue list download and share feature in India only
+- Extend `RxWorker` in `OverdueDownloadWorker`
+- Implement overdue list download/share format dialog
+- Set user ID as user property in `MixpanelAnalyticsReporter`
+- Provide a standardized mechanism to update user and deployment details in third-party tooling
+- Improve Room annotation processing
+  - Enable star projection of queries
+  - Enable incremental annotation processing
+- Use `IO` scheduler for doing background tasks in `OverdueDownloadWorker`
+- Download/Share CSV only for API below 24
+- Show error dialog when overdue list download fails
+- Fix sharing downloaded overdue list through Whatsapp is not working
+- Enable `OverdueListDownloadAndShare` feature flag
+- Make PDF as the default for downloading Overdue lists
+- Default to opening Google Sheets for Spreadsheets
 
 ### Changes
 
-- [In Progress: 23 Nov 2021] Add option to download & share overdue list
+- Add option to download & share overdue list
 
-## On Demo
+### Fixes
+
+- Fix medical history answers toggle not switching when selected
+
+## 2021-11-24-8041
+
+### Internal
+
+- Bump Mixpanel to v5.9.5
+- Set user ID as user property in `MixpanelAnalyticsReporter`
+
+## 2021-11-23-8038
 
 ### Internal
 

@@ -8,8 +8,10 @@ import com.spotify.mobius.test.UpdateSpec
 import com.spotify.mobius.test.UpdateSpec.assertThatNext
 import org.junit.Test
 import org.simple.clinic.TestData
+import org.simple.clinic.analytics.NetworkConnectivityStatus.ACTIVE
 import org.simple.clinic.analytics.NetworkConnectivityStatus.INACTIVE
 import org.simple.clinic.facility.FacilityConfig
+import org.simple.clinic.overdue.download.OverdueListFileFormat.CSV
 import java.time.LocalDate
 import java.util.Optional
 import java.util.UUID
@@ -17,7 +19,7 @@ import java.util.UUID
 class OverdueUpdateTest {
 
   private val dateOnClock = LocalDate.parse("2018-01-01")
-  private val updateSpec = UpdateSpec(OverdueUpdate(dateOnClock))
+  private val updateSpec = UpdateSpec(OverdueUpdate(date = dateOnClock, canGeneratePdf = true))
   private val defaultModel = OverdueModel.create()
 
   @Test
@@ -60,7 +62,6 @@ class OverdueUpdateTest {
 
   @Test
   fun `when current facility is loaded and overdue list changes feature is enabled, then load overdue appointments with patients with no phone numbers`() {
-    val updateSpec = UpdateSpec(OverdueUpdate(dateOnClock))
     val facility = TestData.facility(
         uuid = UUID.fromString("6d66fda7-7ca6-4431-ac3b-b570f1123624"),
         facilityConfig = FacilityConfig(
@@ -90,6 +91,30 @@ class OverdueUpdateTest {
   }
 
   @Test
+  fun `when download overdue list button is clicked, network is connected and pdf can be generated, then open select download format dialog`() {
+    updateSpec
+        .given(defaultModel)
+        .whenEvent(DownloadOverdueListClicked(networkStatus = Optional.of(ACTIVE)))
+        .then(assertThatNext(
+            hasNoModel(),
+            hasEffects(OpenSelectDownloadFormatDialog)
+        ))
+  }
+
+  @Test
+  fun `when download overdue list button is clicked, network is connected and pdf can not be generated, then schedule download`() {
+    val updateSpec = UpdateSpec(OverdueUpdate(date = dateOnClock, canGeneratePdf = false))
+
+    updateSpec
+        .given(defaultModel)
+        .whenEvent(DownloadOverdueListClicked(networkStatus = Optional.of(ACTIVE)))
+        .then(assertThatNext(
+            hasNoModel(),
+            hasEffects(ScheduleDownload(CSV))
+        ))
+  }
+
+  @Test
   fun `when share overdue list button is clicked and network is not connected, then show no active connection dialog`() {
     updateSpec
         .given(defaultModel)
@@ -97,6 +122,30 @@ class OverdueUpdateTest {
         .then(assertThatNext(
             hasNoModel(),
             hasEffects(ShowNoActiveNetworkConnectionDialog)
+        ))
+  }
+
+  @Test
+  fun `when share overdue list button is clicked, network is connected and pdf can be generated, then open select share format dialog`() {
+    updateSpec
+        .given(defaultModel)
+        .whenEvent(ShareOverdueListClicked(networkStatus = Optional.of(ACTIVE)))
+        .then(assertThatNext(
+            hasNoModel(),
+            hasEffects(OpenSelectShareFormatDialog)
+        ))
+  }
+
+  @Test
+  fun `when share overdue list button is clicked, network is connected but pdf can not be generated, then open progress for share dialog`() {
+    val updateSpec = UpdateSpec(OverdueUpdate(date = dateOnClock, canGeneratePdf = false))
+
+    updateSpec
+        .given(defaultModel)
+        .whenEvent(ShareOverdueListClicked(networkStatus = Optional.of(ACTIVE)))
+        .then(assertThatNext(
+            hasNoModel(),
+            hasEffects(OpenSharingInProgressDialog)
         ))
   }
 }

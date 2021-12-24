@@ -26,6 +26,7 @@ import org.simple.clinic.login.LoginModule
 import org.simple.clinic.login.LoginOtpSmsListenerModule
 import org.simple.clinic.onboarding.OnboardingModule
 import org.simple.clinic.patient.PatientModule
+import org.simple.clinic.plumbing.infrastructure.InfrastructureModule
 import org.simple.clinic.registration.RegistrationModule
 import org.simple.clinic.remoteconfig.RemoteConfigModule
 import org.simple.clinic.remoteconfig.firebase.FirebaseRemoteConfigModule
@@ -73,8 +74,6 @@ import javax.inject.Named
   RemoteConfigModule::class,
   SettingsModule::class,
   AppConfigModule::class,
-  HttpInterceptorsModule::class,
-  RetrofitModule::class,
   FirebaseRemoteConfigModule::class,
   LoginOtpSmsListenerModule::class,
   HttpInterceptorsModule::class,
@@ -91,7 +90,8 @@ import javax.inject.Named
   CountryModule::class,
   OverdueAppointmentsConfigModule::class,
   BruteForceOtpEntryProtectionModule::class,
-  DrugFrequencyModule::class
+  DrugFrequencyModule::class,
+  InfrastructureModule::class
 ])
 class AppModule(private val appContext: Application) {
 

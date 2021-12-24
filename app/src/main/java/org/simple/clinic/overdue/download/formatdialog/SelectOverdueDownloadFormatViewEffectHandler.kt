@@ -9,8 +9,10 @@ class SelectOverdueDownloadFormatViewEffectHandler(
 
   override fun handle(viewEffect: SelectOverdueDownloadFormatViewEffect) {
     when (viewEffect) {
-      is ShareDownloadedFile -> uiActions.shareDownloadedFile(viewEffect.uri)
+      is ShareDownloadedFile -> uiActions.shareDownloadedFile(viewEffect.uri, viewEffect.mimeType)
       Dismiss -> uiActions.dismiss()
+      OpenNotEnoughStorageErrorDialog -> uiActions.openNotEnoughStorageErrorDialog()
+      OpenDownloadFailedErrorDialog -> uiActions.openDownloadFailedErrorDialog()
     }.exhaustive()
   }
 }
