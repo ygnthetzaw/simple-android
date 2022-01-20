@@ -39,14 +39,25 @@ class EditPatientViewRenderer(private val ui: EditPatientUi) : ViewRenderer<Edit
       ui.setupUi(model.inputFields!!)
     }
 
-    fillFormFields(model.ongoingEntry, model.savedBangladeshNationalId)
+    fillFormFields(model.ongoingEntry, model.savedBangladeshNationalId, model.isUserCountryIndia)
     displayBpPassports(model)
   }
 
+  private fun displayNewlyAddedNHID(alternativeId: String) {
+    if (alternativeId.isNotEmpty()) {
+      ui.hideAddNHIDButton()
+      ui.setAlternateIdContainer(Identifier(alternativeId, IndiaNationalHealthId))
+    } else {
+      ui.showIndiaNHIDLabel()
+      ui.showAddNHIDButton()
+    }
+  }
+
   private fun displayBpPassports(model: EditPatientModel) {
+    val newlyAddedBpPassports = model.ongoingEntry.bpPassports?.map { it.displayValue() }.orEmpty()
     val identifiers = model.bpPassports?.map { it.identifier.displayValue() }.orEmpty()
 
-    ui.displayBpPassports(identifiers)
+    ui.displayBpPassports(identifiers + newlyAddedBpPassports)
   }
 
   private fun manageButtonState(model: EditPatientModel) {
@@ -59,7 +70,8 @@ class EditPatientViewRenderer(private val ui: EditPatientUi) : ViewRenderer<Edit
 
   private fun fillFormFields(
       ongoingEntry: EditablePatientEntry,
-      alternateId: BusinessId?
+      alternateId: BusinessId?,
+      isUserCountryIndia: Boolean
   ) {
     with(ui) {
       setPatientName(ongoingEntry.name)
@@ -70,7 +82,7 @@ class EditPatientViewRenderer(private val ui: EditPatientUi) : ViewRenderer<Edit
       setStreetAddress(ongoingEntry.streetAddress)
       setZone(ongoingEntry.zone)
       setColonyOrVillage(ongoingEntry.colonyOrVillage)
-      setAlternateId(ongoingEntry, alternateId)
+      setAlternateIdIfNHIDIsUpdated(ongoingEntry, alternateId, isUserCountryIndia)
     }
 
     val ageOrDateOfBirth = ongoingEntry.ageOrDateOfBirth
@@ -80,7 +92,18 @@ class EditPatientViewRenderer(private val ui: EditPatientUi) : ViewRenderer<Edit
     }.exhaustive()
   }
 
-  private fun setAlternateId(ongoingEntry: EditablePatientEntry, alternateId: BusinessId?) {
+  private fun setAlternateIdIfNHIDIsUpdated(ongoingEntry: EditablePatientEntry, alternateId: BusinessId?, isUserCountryIndia: Boolean) {
+    if (isUserCountryIndia && alternateId == null) {
+      displayNewlyAddedNHID(ongoingEntry.alternativeId)
+    } else {
+      setAlternateId(alternateId, ongoingEntry)
+    }
+  }
+
+  private fun setAlternateId(
+      alternateId: BusinessId?,
+      ongoingEntry: EditablePatientEntry
+  ) {
     when (val alternateIdentifierType = alternateId?.identifier?.type) {
       // When alternative id is not present, we would want to set the text watcher on
       // text field, so that we can listen the text changes and update the model

@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "schedule": [
+    "after 12am and before 2am"
+  ],
+  "ignoreDeps": [
+    // Ignoring zxing update. Since update requires Java 8+ runtime.
+    "com.google.zxing:core"
+  ],
+  "prConcurrentLimit": 5
+}

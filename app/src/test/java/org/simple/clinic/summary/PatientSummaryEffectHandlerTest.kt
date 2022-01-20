@@ -14,11 +14,13 @@ import org.junit.Test
 import org.simple.clinic.TestData
 import org.simple.clinic.bloodsugar.BloodSugarRepository
 import org.simple.clinic.bp.BloodPressureRepository
+import org.simple.clinic.drugs.PrescriptionRepository
 import org.simple.clinic.facility.FacilityRepository
 import org.simple.clinic.medicalhistory.Answer.No
 import org.simple.clinic.medicalhistory.Answer.Yes
 import org.simple.clinic.medicalhistory.MedicalHistoryRepository
 import org.simple.clinic.mobius.EffectHandlerTestCase
+import org.simple.clinic.overdue.AppointmentRepository
 import org.simple.clinic.patient.PatientProfile
 import org.simple.clinic.patient.PatientRepository
 import org.simple.clinic.patient.businessid.Identifier
@@ -41,10 +43,12 @@ class PatientSummaryEffectHandlerTest {
   private val bloodSugarRepository = mock<BloodSugarRepository>()
   private val bloodPressureRepository = mock<BloodPressureRepository>()
   private val medicalHistoryRepository = mock<MedicalHistoryRepository>()
+  private val prescriptionRepository = mock<PrescriptionRepository>()
   private val missingPhoneReminderRepository = mock<MissingPhoneReminderRepository>()
   private val dataSync = mock<DataSync>()
   private val facilityRepository = mock<FacilityRepository>()
   private val teleconsultFacilityRepository = mock<TeleconsultationFacilityRepository>()
+  private val appointmentRepository = mock<AppointmentRepository>()
   private val viewEffectHandler = PatientSummaryViewEffectHandler(uiActions)
 
   private val patientUuid = UUID.fromString("67bde563-2cde-4f43-91b4-ba450f0f4d8a")
@@ -57,7 +61,7 @@ class PatientSummaryEffectHandlerTest {
       schedulersProvider = TrampolineSchedulersProvider(),
       patientRepository = patientRepository,
       bloodPressureRepository = bloodPressureRepository,
-      appointmentRepository = mock(),
+      appointmentRepository = appointmentRepository,
       missingPhoneReminderRepository = missingPhoneReminderRepository,
       bloodSugarRepository = bloodSugarRepository,
       dataSync = dataSync,
@@ -68,6 +72,7 @@ class PatientSummaryEffectHandlerTest {
       uuidGenerator = uuidGenerator,
       facilityRepository = facilityRepository,
       teleconsultationFacilityRepository = teleconsultFacilityRepository,
+      prescriptionRepository = prescriptionRepository,
       viewEffectsConsumer = viewEffectHandler::handle
   )
   private val testCase = EffectHandlerTestCase(effectHandler.build())
@@ -106,6 +111,7 @@ class PatientSummaryEffectHandlerTest {
         uuidGenerator = uuidGenerator,
         facilityRepository = facilityRepository,
         teleconsultationFacilityRepository = teleconsultFacilityRepository,
+        prescriptionRepository = prescriptionRepository,
         viewEffectsConsumer = viewEffectHandler::handle
     )
     val testCase = EffectHandlerTestCase(effectHandler.build())
@@ -161,6 +167,7 @@ class PatientSummaryEffectHandlerTest {
         uuidGenerator = uuidGenerator,
         facilityRepository = facilityRepository,
         teleconsultationFacilityRepository = teleconsultFacilityRepository,
+        prescriptionRepository = prescriptionRepository,
         viewEffectsConsumer = viewEffectHandler::handle
     )
     val testCase = EffectHandlerTestCase(effectHandler.build())
@@ -227,7 +234,8 @@ class PatientSummaryEffectHandlerTest {
         patientUuid = patientUuid
     )
 
-    whenever(patientRepository.hasPatientDataChangedSince(patientUuid, screenCreatedTimestamp)) doReturn true
+    whenever(patientRepository.hasPatientMeasurementDataChangedSince(patientUuid, screenCreatedTimestamp)) doReturn true
+    whenever(appointmentRepository.hasAppointmentForPatientChangedSince(patientUuid, screenCreatedTimestamp)) doReturn false
     whenever(bloodPressureRepository.bloodPressureCountImmediate(patientUuid)) doReturn 3
     whenever(bloodSugarRepository.bloodSugarCountImmediate(patientUuid)) doReturn 2
     whenever(medicalHistoryRepository.historyForPatientOrDefaultImmediate(medicalHistoryUuid, patientUuid)) doReturn medicalHistory
@@ -238,7 +246,8 @@ class PatientSummaryEffectHandlerTest {
     // then
     testCase.assertOutgoingEvents(
         DataForBackClickLoaded(
-            hasPatientDataChangedSinceScreenCreated = true,
+            hasPatientMeasurementDataChangedSinceScreenCreated = true,
+            hasAppointmentChangeSinceScreenCreated = false,
             countOfRecordedBloodPressures = 3,
             countOfRecordedBloodSugars = 2,
             medicalHistory = medicalHistory
@@ -257,16 +266,20 @@ class PatientSummaryEffectHandlerTest {
         hasDiabetes = No
     )
 
+    whenever(patientRepository.hasPatientMeasurementDataChangedSince(patientUuid, Instant.parse("2018-01-01T00:00:00Z"))) doReturn true
+    whenever(appointmentRepository.hasAppointmentForPatientChangedSince(patientUuid, Instant.parse("2018-01-01T00:00:00Z"))) doReturn false
     whenever(bloodPressureRepository.bloodPressureCountImmediate(patientUuid)) doReturn 2
     whenever(bloodSugarRepository.bloodSugarCountImmediate(patientUuid)) doReturn 3
     whenever(medicalHistoryRepository.historyForPatientOrDefaultImmediate(medicalHistoryUuid, patientUuid)) doReturn medicalHistory
 
     // when
-    testCase.dispatch(LoadDataForDoneClick(patientUuid))
+    testCase.dispatch(LoadDataForDoneClick(patientUuid, Instant.parse("2018-01-01T00:00:00Z")))
 
     // then
     testCase.assertOutgoingEvents(
         DataForDoneClickLoaded(
+            hasPatientMeasurementDataChangedSinceScreenCreated = true,
+            hasAppointmentChangeSinceScreenCreated = false,
             countOfRecordedBloodPressures = 2,
             countOfRecordedBloodSugars = 3,
             medicalHistory = medicalHistory
@@ -471,6 +484,44 @@ class PatientSummaryEffectHandlerTest {
     testCase.assertNoOutgoingEvents()
 
     verify(uiActions).showUpdatePhoneDialog(patientUuid)
+    verifyNoMoreInteractions(uiActions)
+  }
+
+  @Test
+  fun `when load patient registration data effect is received, then load patient registration data`() {
+    // given
+    val patientUuid = UUID.fromString("31b34900-52aa-4892-8bed-2c720951880e")
+    val medicalHistory = TestData.medicalHistory(
+        uuid = UUID.fromString("333a13f9-4a5b-4fd9-84f3-e169d26331ba"),
+        patientUuid = patientUuid
+    )
+
+    whenever(prescriptionRepository.prescriptionCountImmediate(patientUuid)) doReturn 2
+    whenever(bloodPressureRepository.bloodPressureCountImmediate(patientUuid)) doReturn 2
+    whenever(bloodSugarRepository.bloodSugarCountImmediate(patientUuid)) doReturn 0
+
+    // when
+    testCase.dispatch(LoadPatientRegistrationData(patientUuid))
+
+    // then
+    testCase.assertOutgoingEvents(PatientRegistrationDataLoaded(
+        countOfPrescribedDrugs = 2,
+        countOfRecordedBloodPressures = 2,
+        countOfRecordedBloodSugars = 0
+    ))
+
+    verifyZeroInteractions(uiActions)
+  }
+
+  @Test
+  fun `when refresh next appointment effect is received, then refresh appointment details`() {
+    // when
+    testCase.dispatch(RefreshNextAppointment)
+
+    // then
+    testCase.assertNoOutgoingEvents()
+
+    verify(uiActions).refreshNextAppointment()
     verifyNoMoreInteractions(uiActions)
   }
 }

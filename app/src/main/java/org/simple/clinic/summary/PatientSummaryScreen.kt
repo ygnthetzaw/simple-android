@@ -36,6 +36,8 @@ import org.simple.clinic.facility.Facility
 import org.simple.clinic.facility.alertchange.AlertFacilityChangeSheet
 import org.simple.clinic.facility.alertchange.Continuation.ContinueToScreen
 import org.simple.clinic.facility.alertchange.Continuation.ContinueToScreenExpectingResult
+import org.simple.clinic.feature.Feature
+import org.simple.clinic.feature.Features
 import org.simple.clinic.home.HomeScreenKey
 import org.simple.clinic.mobius.DeferredEventSource
 import org.simple.clinic.mobius.ViewRenderer
@@ -152,6 +154,9 @@ class PatientSummaryScreen :
   private val patientDiedStatusView
     get() = binding.patientDiedStatusView
 
+  private val nextAppointmentFacilityView
+    get() = binding.nextAppointmentFacilityView
+
   @Inject
   lateinit var router: Router
 
@@ -174,6 +179,9 @@ class PatientSummaryScreen :
   @Inject
   lateinit var whatsAppMessageSender: WhatsAppMessageSender
 
+  @Inject
+  lateinit var features: Features
+
   private var modelUpdateCallback: PatientSummaryModelUpdateCallback? = null
 
   private val snackbarActionClicks = PublishSubject.create<PatientSummaryEvent>()
@@ -194,7 +202,10 @@ class PatientSummaryScreen :
   }
 
   override fun uiRenderer(): ViewRenderer<PatientSummaryModel> {
-    return PatientSummaryViewRenderer(ui = this) { model ->
+    return PatientSummaryViewRenderer(
+        ui = this,
+        isNextAppointmentFeatureEnabled = features.isEnabled(Feature.NextAppointment)
+    ) { model ->
       modelUpdateCallback?.invoke(model)
     }
   }
@@ -213,6 +224,8 @@ class PatientSummaryScreen :
             snackbarActionClicks,
             logTeleconsultClicks(),
             changeAssignedFacilityClicks(),
+            nextAppointmentActionClicks(),
+            assignedFacilityChanges()
         )
         .compose(ReportAnalyticsEvents())
         .cast()
@@ -319,7 +332,11 @@ class PatientSummaryScreen :
     )
   }
 
-  private fun doneClicks() = doneButton.clicks().map { PatientSummaryDoneClicked(screenKey.patientUuid) }
+  private fun doneClicks() = doneButton
+      .clicks()
+      .map {
+        PatientSummaryDoneClicked(screenKey.patientUuid, screenKey.screenCreatedTimestamp)
+      }
 
   private fun contactDoctorClicks() = teleconsultButton.clicks().map { ContactDoctorClicked }
 
@@ -338,6 +355,22 @@ class PatientSummaryScreen :
       assignedFacilityView.changeAssignedFacilityClicks = { emitter.onNext(ChangeAssignedFacilityClicked) }
 
       emitter.setCancellable { assignedFacilityView.changeAssignedFacilityClicks = null }
+    }
+  }
+
+  private fun nextAppointmentActionClicks(): Observable<PatientSummaryEvent> {
+    return Observable.create { emitter ->
+      nextAppointmentFacilityView.nextAppointmentActionClicks = { emitter.onNext(NextAppointmentActionClicked) }
+
+      emitter.setCancellable { nextAppointmentFacilityView.nextAppointmentActionClicks = null }
+    }
+  }
+
+  private fun assignedFacilityChanges(): Observable<AssignedFacilityChanged> {
+    return Observable.create { emitter ->
+      assignedFacilityView.assignedFacilityChanges = { emitter.onNext(AssignedFacilityChanged) }
+
+      emitter.setCancellable { assignedFacilityView.assignedFacilityChanges = null }
     }
   }
 
@@ -379,8 +412,8 @@ class PatientSummaryScreen :
       val recordedDate = dateFormatter.format(recordedAt.toLocalDateAtZone(userClock.zone))
       val facilityNameAndDate = requireContext().getString(R.string.patientsummary_registered_facility, recordedDate, registeredFacilityName)
 
-      facilityNameAndDateTextView.visibility = View.VISIBLE
-      labelRegistered.visibility = View.VISIBLE
+      facilityNameAndDateTextView.visibility = VISIBLE
+      labelRegistered.visibility = VISIBLE
       facilityNameAndDateTextView.text = facilityNameAndDate
     } else {
       facilityNameAndDateTextView.visibility = View.GONE
@@ -488,7 +521,7 @@ class PatientSummaryScreen :
   }
 
   override fun showEditButton() {
-    editPatientButton.visibility = View.VISIBLE
+    editPatientButton.visibility = VISIBLE
   }
 
   override fun showDiabetesView() {
@@ -527,7 +560,7 @@ class PatientSummaryScreen :
   }
 
   override fun showTeleconsultButton() {
-    teleconsultButton.visibility = View.VISIBLE
+    teleconsultButton.visibility = VISIBLE
   }
 
   override fun hideTeleconsultButton() {
@@ -535,7 +568,7 @@ class PatientSummaryScreen :
   }
 
   override fun showAssignedFacilityView() {
-    assignedFacilityView.visibility = View.VISIBLE
+    assignedFacilityView.visibility = VISIBLE
   }
 
   override fun hideAssignedFacilityView() {
@@ -551,7 +584,7 @@ class PatientSummaryScreen :
   }
 
   override fun showTeleconsultLogButton() {
-    logTeleconsultButtonFrame.visibility = View.VISIBLE
+    logTeleconsultButtonFrame.visibility = VISIBLE
   }
 
   override fun navigateToTeleconsultRecordScreen(patientUuid: UUID, teleconsultRecordId: UUID) {
@@ -599,6 +632,18 @@ class PatientSummaryScreen :
 
   override fun showPatientDiedStatus() {
     patientDiedStatusView.visibility = VISIBLE
+  }
+
+  override fun showNextAppointmentCard() {
+    nextAppointmentFacilityView.visibility = VISIBLE
+  }
+
+  override fun hideNextAppointmentCard() {
+    nextAppointmentFacilityView.visibility = GONE
+  }
+
+  override fun refreshNextAppointment() {
+    nextAppointmentFacilityView.refreshAppointmentDetails()
   }
 
   interface Injector {

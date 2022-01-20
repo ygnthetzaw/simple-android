@@ -30,8 +30,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
 
       - name: QA Lint
@@ -53,8 +54,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
 
       - name: QA Unit Tests
@@ -102,6 +104,12 @@ jobs:
       - name: Link Heroku CLI globally
         run: npm link heroku
 
+      - name: Install Heroku Buildpacks registry
+        run: heroku plugins:install buildpack-registry
+
+      - name: Link Heroku CLI globally
+        run: heroku plugins:install buildpacks
+
       - name: Cache Gradle build
         uses: actions/cache@v2
         with:
@@ -133,8 +141,9 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       - name: set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
 
       - name: Generate server app name
@@ -164,7 +173,7 @@ jobs:
             adb root
             mkdir -p android-app/app/build/outputs/test-artifacts
             android-app/gradlew -p android-app --build-cache --no-daemon -PmanifestEndpoint=https://${{ steps.generate-server-app-name.outputs.heroku_app_name }}.herokuapp.com/api/ installQaDebug installQaDebugAndroidTest
-            adb shell am instrument -w org.simple.clinic.qa.debug.test/org.simple.clinic.AndroidTestJUnitRunner >android-app/app/build/outputs/test-artifacts/logs.txt 2>android-app/app/build/outputs/test-artifacts/logs.txt
+            adb shell am instrument -w -e filter org.simple.clinic.benchmark.SelectBenchmarkTests -e benchmark_app_performance false  org.simple.clinic.qa.debug.test/org.simple.clinic.AndroidTestJUnitRunner >android-app/app/build/outputs/test-artifacts/logs.txt 2>android-app/app/build/outputs/test-artifacts/logs.txt
             cat android-app/app/build/outputs/test-artifacts/logs.txt
             adb pull /storage/emulated/0/Android/data/org.simple.clinic.qa.debug/ android-app/app/build/outputs/test-artifacts/ || true
             adb uninstall org.simple.clinic.qa.debug
@@ -191,8 +200,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
 
       - name: Mobius Migration Tests
@@ -207,8 +217,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
 
       - name: Build ${{ matrix.buildType }} Release bundle

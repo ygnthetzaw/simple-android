@@ -20,13 +20,18 @@ data class LoadDataForBackClick(
     val screenCreatedTimestamp: Instant
 ) : PatientSummaryEffect()
 
-data class LoadDataForDoneClick(val patientUuid: UUID) : PatientSummaryEffect()
+data class LoadDataForDoneClick(
+    val patientUuid: UUID,
+    val screenCreatedTimestamp: Instant
+) : PatientSummaryEffect()
 
 data class TriggerSync(val sheetOpenedFrom: AppointmentSheetOpenedFrom) : PatientSummaryEffect()
 
 data class FetchHasShownMissingPhoneReminder(val patientUuid: UUID) : PatientSummaryEffect()
 
 object LoadMedicalOfficers : PatientSummaryEffect()
+
+data class LoadPatientRegistrationData(val patientUuid: UUID) : PatientSummaryEffect()
 
 sealed class PatientSummaryViewEffect : PatientSummaryEffect()
 
@@ -74,3 +79,5 @@ object ShowAddBloodSugarWarningDialog : PatientSummaryViewEffect()
 object OpenSelectFacilitySheet : PatientSummaryViewEffect()
 
 data class DispatchNewAssignedFacility(val facility: Facility) : PatientSummaryViewEffect()
+
+object RefreshNextAppointment : PatientSummaryViewEffect()

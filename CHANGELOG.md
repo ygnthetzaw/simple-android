@@ -4,9 +4,75 @@
 
 ### Internal
 
-- Inject a new `AppDatabase` in instrumented tests instead of using a singleton instance
+- Bump Gradle to v7.3.3
+- Remove version range for zxing dependency in the version catalog
+- Bump WorkManager to v2.7.1
+- Bump Google Play Services
+  - MLKit Barcode Scanning to v16.2.1
+  - Authentication to v19.2.0
+- Update renovate bot config
+- Bump OkHttp to v4.9.3
+- Ignore automatic appointments when fetching next appointment details
+- Bump AGP to v7.0.4
+- Bump Play Core to v1.10.3
+- Bump androidx-cameraView to 1.0.0-alpha32
+- Bump Github action script to v5.1.0
+- Bump Lint to v30.0.4
+- Bump Dagger to v2.40.5
+- Bump facebook.soloader to 0.10.3
+- Bump Mobius to v1.5.7
+- Request camera permissions when add bp passport button is clicked in `EditPatientScreen`
+- Run renovate bot daily after 12 am
+- Update next appointment card UI specifications
+- Set toolbar title in `ScanSimpleIdScreen` based on where it's opened from
+- Implement adding `NHID` in `EditPatientScreen`
+- Request camera permission when add nhid button is clicked in `EditPatientScreen`
+- Fix when scanned QR code error is shown the progress state continues to show
+- Refactor `addBPPassport` and `addNHIDButton` to use `MaterialButton`
+- Fix two duplicate NHIDs end up rendering in `EditPatientScreen`
+- Bump firebase config to v21.0.1
+- Add facility protocol and group UUID in demo facility
+- Update assigned facility card UI specifications
+- [In Progress: 11 Jan 2022] Implement adding NHID in `PatientEditScreen`
+- [In Progress: 17 Jan 2022] Implement adding scan support for BpPassport in `EditPatientScreen`
 
 ## On Demo
+
+### Internal
+
+- Don't run auto request review action in draft PRs
+- Implement `NextAppointmentCardView`
+- Show next appointment card in patient summary screen
+- Refresh appointment details when appointment is scheduled or assigned facility is changed
+- Fix appointment not refreshing after assigned facility is changed
+- Add double non breaking spaces between appointment date and status
+- Debounce overdue updates to prevent running out of view effect queue size
+- Stop loading total facility count when facility picker view is created
+- Update `hasAppointmentForPatientChangedSince` query to only consider `Scheduled` appointments
+- Update GH Actions `setup-jdk` to v2
+- Bump Datadog SDK version
+
+### Changes
+
+- View next appointment information in patient summary screen
+- Change appointment bottom sheet display logic
+  - Schedule appointment sheet is now only opened from patient summary screen when BP or Blood Sugar or Prescription is changed
+
+## 2022-01-11-8098
+
+### Internal
+
+- Inject a new `AppDatabase` in instrumented tests instead of using a singleton instance
+- Add support for writing performance regression test suites
+- Remove QA Android tests from PR comment GH Action
+- Return early if the required `Timeout` conditions are not satisfied in `TimeoutCallAdapterFactory`
+- Enable auto merge of PR when assigning reviewer
+
+### Fixes
+
+- Fix help screen not opening on button click
+
+## 2021-12-28-8079
 
 ### Internal
 
@@ -24,6 +90,7 @@
 - Add support for running Heroku cleanup instance manually
 - Migrate `EditMedicineScreen` to use view effects
 - Migrate `OverdueScreen` to use view effects
+- Add a specific endpoint network timeout
 
 ### Fixes
 

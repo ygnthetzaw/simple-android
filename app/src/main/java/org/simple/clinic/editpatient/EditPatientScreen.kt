@@ -2,6 +2,7 @@ package org.simple.clinic.editpatient
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -19,10 +20,14 @@ import com.jakewharton.rxbinding3.view.clicks
 import com.spotify.mobius.functions.Consumer
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.cast
+import io.reactivex.rxkotlin.ofType
 import io.reactivex.subjects.PublishSubject
 import kotlinx.parcelize.Parcelize
 import org.simple.clinic.R
 import org.simple.clinic.ReportAnalyticsEvents
+import org.simple.clinic.activity.permissions.RequestPermissions
+import org.simple.clinic.activity.permissions.RuntimePermissions
+import org.simple.clinic.appconfig.Country
 import org.simple.clinic.databinding.PatientEditAlternateIdViewBinding
 import org.simple.clinic.databinding.PatientEditBpPassportViewBinding
 import org.simple.clinic.databinding.ScreenEditPatientBinding
@@ -44,9 +49,12 @@ import org.simple.clinic.editpatient.deletepatient.DeletePatientScreen
 import org.simple.clinic.feature.Feature.DeletePatient
 import org.simple.clinic.feature.Feature.VillageTypeAhead
 import org.simple.clinic.feature.Features
+import org.simple.clinic.mobius.DeferredEventSource
 import org.simple.clinic.navigation.v2.HandlesBack
 import org.simple.clinic.navigation.v2.Router
 import org.simple.clinic.navigation.v2.ScreenKey
+import org.simple.clinic.navigation.v2.ScreenResultBus
+import org.simple.clinic.navigation.v2.Succeeded
 import org.simple.clinic.navigation.v2.fragments.BaseScreen
 import org.simple.clinic.newentry.country.InputFields
 import org.simple.clinic.newentry.form.AgeField
@@ -72,9 +80,13 @@ import org.simple.clinic.patient.businessid.BusinessId
 import org.simple.clinic.patient.businessid.Identifier
 import org.simple.clinic.platform.crash.CrashReporter
 import org.simple.clinic.registration.phone.PhoneNumberValidator
+import org.simple.clinic.scanid.OpenedFrom
+import org.simple.clinic.scanid.ScanSimpleIdScreen
+import org.simple.clinic.scanid.ScanSimpleIdScreenKey
 import org.simple.clinic.util.UserClock
 import org.simple.clinic.util.afterTextChangedWatcher
 import org.simple.clinic.util.exhaustive
+import org.simple.clinic.util.setFragmentResultListener
 import org.simple.clinic.util.unsafeLazy
 import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.Enabled
 import org.simple.clinic.widgets.ProgressMaterialButton.ButtonState.InProgress
@@ -125,6 +137,15 @@ class EditPatientScreen : BaseScreen<
 
   @Inject
   lateinit var userClock: UserClock
+
+  @Inject
+  lateinit var runtimePermissions: RuntimePermissions
+
+  @Inject
+  lateinit var screenResults: ScreenResultBus
+
+   @Inject
+  lateinit var country: Country
 
   private val rootView
     get() = binding.root
@@ -228,8 +249,15 @@ class EditPatientScreen : BaseScreen<
   private val saveButton
     get() = binding.saveButton
 
+  private val addBpPassportButton
+    get() = binding.addBpPassportButton
+
+  private val addNHIDButton
+    get() = binding.addNHIDButton
+
   private val hardwareBackPressEvents = PublishSubject.create<BackClicked>()
   private val hotEvents = PublishSubject.create<UiEvent>()
+  private val additionalEvents = DeferredEventSource<EditPatientEvent>()
 
   private val villageTypeAheadAdapter by unsafeLazy {
     ArrayAdapter<String>(
@@ -306,7 +334,8 @@ class EditPatientScreen : BaseScreen<
       phoneNumber = screenKey.phoneNumber,
       dateOfBirthFormatter = dateOfBirthFormat,
       bangladeshNationalId = screenKey.bangladeshNationalId,
-      saveButtonState = EditPatientState.NOT_SAVING_PATIENT
+      saveButtonState = EditPatientState.NOT_SAVING_PATIENT,
+      isUserCountryIndia = country.isoCountryCode == Country.INDIA
   )
 
   override fun createInit() = EditPatientInit(
@@ -328,9 +357,17 @@ class EditPatientScreen : BaseScreen<
       saveClicks(),
       dateOfBirthFocusChanges(),
       backClicks(),
+      addBpPassportClicks(),
+      addNHIDButtonClicks(),
       hotEvents
-  ).compose(ReportAnalyticsEvents())
+  )
+      .compose(RequestPermissions(runtimePermissions, screenResults.streamResults().ofType()))
+      .compose(ReportAnalyticsEvents())
       .cast<EditPatientEvent>()
+
+  override fun additionalEventSources() = listOf(
+      additionalEvents
+  )
 
   override fun bindView(
       layoutInflater: LayoutInflater,
@@ -344,11 +381,34 @@ class EditPatientScreen : BaseScreen<
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setAdapterWhenVillageTypeAheadIsEnabled()
+
+    deletePatient.setOnClickListener { router.push(DeletePatientScreen.Key(screenKey.patient.uuid)) }
+
+    handleScanIdentifierResult()
+  }
+
+  private fun setAdapterWhenVillageTypeAheadIsEnabled() {
     if (features.isEnabled(VillageTypeAhead)) {
       colonyOrVillageEditText.setAdapter(villageTypeAheadAdapter)
     }
+  }
 
-    deletePatient.setOnClickListener { router.push(DeletePatientScreen.Key(screenKey.patient.uuid)) }
+  private fun handleScanIdentifierResult() {
+    setFragmentResultListener(ScanBpPassport, ScanIndiaNationalHealthID) { requestKey, result ->
+      if (result !is Succeeded) return@setFragmentResultListener
+
+      when (requestKey) {
+        ScanBpPassport -> {
+          val scannedBPPassport = ScanSimpleIdScreen.readIdentifier(result)
+          additionalEvents.notify(BpPassportAdded(listOf(scannedBPPassport)))
+        }
+        ScanIndiaNationalHealthID -> {
+          val scannedIndiaNHID = ScanSimpleIdScreen.readIdentifier(result)
+          additionalEvents.notify(AlternativeIdChanged(scannedIndiaNHID.value))
+        }
+      }
+    }
   }
 
   override fun setupUi(inputFields: InputFields) {
@@ -362,6 +422,29 @@ class EditPatientScreen : BaseScreen<
   override fun setColonyOrVillagesAutoComplete(colonyOrVillageList: List<String>) {
     villageTypeAheadAdapter.clear()
     villageTypeAheadAdapter.addAll(colonyOrVillageList)
+  }
+
+  override fun openSimpleScanIdScreen(openedFrom: OpenedFrom) {
+    val requestType = when (openedFrom) {
+      is OpenedFrom.EditPatientScreen.ToAddBpPassport -> ScanBpPassport
+      is OpenedFrom.EditPatientScreen.ToAddNHID -> ScanIndiaNationalHealthID
+      else -> throw IllegalArgumentException("Unknown opened from: $openedFrom")
+    }
+
+    router.pushExpectingResult(requestType, ScanSimpleIdScreenKey(openedFrom))
+  }
+
+  override fun showAddNHIDButton() {
+    addNHIDButton.visibility = VISIBLE
+  }
+
+  override fun hideAddNHIDButton() {
+    addNHIDButton.visibility = GONE
+  }
+
+  override fun showIndiaNHIDLabel() {
+    alternateIdLabel.visibility = VISIBLE
+    alternateIdLabel.text = resources.getString(R.string.identifiertype_india_national_health_id)
   }
 
   private fun showOrHideInputFields(inputFields: InputFields) {
@@ -440,6 +523,10 @@ class EditPatientScreen : BaseScreen<
     return saveButton.clicks().map { SaveClicked }
   }
 
+  private fun addNHIDButtonClicks(): Observable<EditPatientEvent> {
+    return addNHIDButton.clicks().map { AddNHIDButtonClicked() }
+  }
+
   private fun backClicks(): Observable<EditPatientEvent> {
     val backButtonClicks = backButton
         .clicks()
@@ -448,6 +535,10 @@ class EditPatientScreen : BaseScreen<
     return backButtonClicks
         .mergeWith(hardwareBackPressEvents)
         .cast()
+  }
+
+  private fun addBpPassportClicks(): Observable<EditPatientEvent> {
+    return addBpPassportButton.clicks().map { AddBpPassportButtonClicked() }
   }
 
   private fun dateOfBirthFocusChanges(): Observable<EditPatientEvent> = dateOfBirthEditText.focusChanges.map(::DateOfBirthFocusChanged)
@@ -742,6 +833,7 @@ class EditPatientScreen : BaseScreen<
     val layoutInflater = LayoutInflater.from(requireContext())
     val alternateIdView = PatientEditAlternateIdViewBinding.inflate(layoutInflater, rootView, false)
     alternateIdView.alternateIdentifier.text = identifier
+    alternateIdContainer.removeAllViews()
     alternateIdContainer.addView(alternateIdView.root)
   }
 
@@ -765,4 +857,10 @@ class EditPatientScreen : BaseScreen<
 
     override fun instantiateFragment() = EditPatientScreen()
   }
+
+  @Parcelize
+  object ScanBpPassport : Parcelable
+
+  @Parcelize
+  object ScanIndiaNationalHealthID : Parcelable
 }

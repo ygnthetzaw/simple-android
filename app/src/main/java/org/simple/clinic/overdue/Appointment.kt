@@ -14,6 +14,7 @@ import com.squareup.moshi.ToJson
 import io.reactivex.Flowable
 import kotlinx.parcelize.Parcelize
 import org.simple.clinic.patient.SyncStatus
+import org.simple.clinic.summary.nextappointment.NextAppointmentPatientProfile
 import org.simple.clinic.util.room.SafeEnumTypeAdapter
 import java.time.Instant
 import java.time.LocalDate
@@ -306,5 +307,32 @@ data class Appointment(
         patientUUID: UUID,
         scheduledDate: LocalDate
     ): Appointment?
+
+    @Query("""
+      SELECT * FROM Appointment
+      WHERE 
+        patientUuid = :patientUuid AND
+        deletedAt IS NULL AND
+        status = 'scheduled' AND
+        appointmentType != 'automatic'
+      GROUP BY patientUuid HAVING MAX(scheduledDate)
+    """)
+    fun nextAppointmentPatientProfile(patientUuid: UUID): NextAppointmentPatientProfile?
+
+    @Query("""
+        SELECT (
+            CASE
+                WHEN (COUNT(uuid) > 0) THEN 1
+                ELSE 0
+            END
+        )
+        FROM Appointment
+        WHERE 
+        updatedAt > :instantToCompare AND
+        status = 'scheduled' AND 
+        syncStatus = :pendingStatus AND 
+        patientUuid = :patientUuid
+    """)
+    fun hasAppointmentForPatientChangedSince(patientUuid: UUID, instantToCompare: Instant, pendingStatus: SyncStatus): Boolean
   }
 }
