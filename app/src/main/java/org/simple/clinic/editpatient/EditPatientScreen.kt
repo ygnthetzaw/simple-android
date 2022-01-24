@@ -46,6 +46,7 @@ import org.simple.clinic.editpatient.EditPatientValidationError.PhoneNumberEmpty
 import org.simple.clinic.editpatient.EditPatientValidationError.PhoneNumberLengthTooShort
 import org.simple.clinic.editpatient.EditPatientValidationError.StateEmpty
 import org.simple.clinic.editpatient.deletepatient.DeletePatientScreen
+import org.simple.clinic.feature.Feature.AddingHealthIDsFromEditPatient
 import org.simple.clinic.feature.Feature.DeletePatient
 import org.simple.clinic.feature.Feature.VillageTypeAhead
 import org.simple.clinic.feature.Features
@@ -335,7 +336,8 @@ class EditPatientScreen : BaseScreen<
       dateOfBirthFormatter = dateOfBirthFormat,
       bangladeshNationalId = screenKey.bangladeshNationalId,
       saveButtonState = EditPatientState.NOT_SAVING_PATIENT,
-      isUserCountryIndia = country.isoCountryCode == Country.INDIA
+      isUserCountryIndia = country.isoCountryCode == Country.INDIA,
+      isAddingHealthIDsFromEditPatientEnabled = features.isEnabled(AddingHealthIDsFromEditPatient)
   )
 
   override fun createInit() = EditPatientInit(
@@ -445,6 +447,10 @@ class EditPatientScreen : BaseScreen<
   override fun showIndiaNHIDLabel() {
     alternateIdLabel.visibility = VISIBLE
     alternateIdLabel.text = resources.getString(R.string.identifiertype_india_national_health_id)
+  }
+
+  override fun showBPPassportButton() {
+    addBpPassportButton.visibility = VISIBLE
   }
 
   private fun showOrHideInputFields(inputFields: InputFields) {
@@ -820,21 +826,38 @@ class EditPatientScreen : BaseScreen<
     alternativeIdInputEditText.setTextWithWatcher(alternateId, alternateIdTextChanges)
   }
 
-  override fun setAlternateIdContainer(alternateId: Identifier) {
+  override fun setAlternateIdContainer(alternateId: Identifier, hasHighlight: Boolean) {
     alternateIdLabel.visibility = VISIBLE
     alternateIdLabel.text = alternateId.displayType(resources)
 
     alternateIdContainer.visibility = VISIBLE
 
-    inflateAlternateIdView(alternateId.displayValue())
+    inflateAlternateIdView(alternateId.displayValue(), hasHighlight)
   }
 
-  private fun inflateAlternateIdView(identifier: String) {
+  private fun inflateAlternateIdView(identifier: String, hasHighlight: Boolean) {
     val layoutInflater = LayoutInflater.from(requireContext())
     val alternateIdView = PatientEditAlternateIdViewBinding.inflate(layoutInflater, rootView, false)
     alternateIdView.alternateIdentifier.text = identifier
     alternateIdContainer.removeAllViews()
+
+    setHighlight(hasHighlight, alternateIdView)
+
     alternateIdContainer.addView(alternateIdView.root)
+  }
+
+  private fun setHighlight(
+      hasHighlight: Boolean,
+      alternateIdView: PatientEditAlternateIdViewBinding
+  ) {
+    if (hasHighlight) {
+      alternateIdView.alternateIdentifier.setBackgroundColor(resources.getColor(R.color.simple_yellow_100))
+
+      val horizontalPadding = resources.getDimensionPixelSize(R.dimen.spacing_8)
+      val verticalPadding = resources.getDimensionPixelSize(R.dimen.spacing_4)
+
+      alternateIdView.alternateIdentifier.setPaddingRelative(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
+    }
   }
 
   override fun onBackPressed(): Boolean {
